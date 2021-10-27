@@ -14,6 +14,10 @@ include (ABSPATH . 'wp-content/plugins/plugin-form-custom/admin/controller/class
 
 function EnablePluginForm(){
     global $wpdb;
+
+    
+
+
    
     
 }
@@ -21,8 +25,8 @@ function EnablePluginForm(){
 function DisablePluginForm(){
     global $wpdb;
     
-    $sqlDelete = "";
-   // $sqlDelete = "DROP TABLE {$wpdb->prefix}questions_forms, {$wpdb->prefix}list_forms, {$wpdb->prefix}list_company, {$wpdb->prefix}list_inspectors, {$wpdb->prefix}list_users, {$wpdb->prefix}list_answers, {$wpdb->prefix}options_questions, {$wpdb->prefix}list_questions, {$wpdb->prefix}type_questions;";
+   //  $sqlDelete = "";
+    $sqlDelete = "DROP TABLE {$wpdb->prefix}questions_forms, {$wpdb->prefix}list_forms, {$wpdb->prefix}list_company, {$wpdb->prefix}list_inspectors, {$wpdb->prefix}list_users, {$wpdb->prefix}list_answers, {$wpdb->prefix}options_questions, {$wpdb->prefix}list_questions, {$wpdb->prefix}type_questions;";
     $wpdb->query($sqlDelete);
     flush_rewrite_rules();
 }
