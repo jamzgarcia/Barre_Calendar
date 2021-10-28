@@ -15,7 +15,88 @@ include (ABSPATH . 'wp-content/plugins/plugin-form-custom/admin/controller/class
 function EnablePluginForm(){
     global $wpdb;
 
+    $sqlstudent = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}dash_student(
+        dash_student_id INT(11) NOT NULL AUTO_INCREMENT,
+        dash_student_nombre INT(11) NOT NULL,
+        dash_student_apellido VARCHAR(20) NULL,
+        dash_student_correo VARCHAR(20) NULL,
+        dash_student_fecha_nacimiento VARCHAR(20) NULL,
+        dash_student_tipo_estudiante VARCHAR(20) NULL,
+        PRIMARY KEY (dash_student_id)
+    );";
+    $createstudent = dbDelta($sqlstudent,true);
     
+    $sqlcoach = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}dash_coach(
+        dash_coach_id INT(11) NOT NULL AUTO_INCREMENT,
+        dash_coach_nombre INT(11) NOT NULL,
+        dash_coach_apellido VARCHAR(20) NULL,
+        dash_coach_correo VARCHAR(20) NULL,
+        dash_coach_fecha_nacimiento VARCHAR(20) NULL,
+        PRIMARY KEY (dash_coach_id)
+    );";
+    $createcoach = dbDelta($sqlcoach,true);
+    
+    $sqlsede = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}dash_sede(
+        dash_sede_id INT(11) NOT NULL AUTO_INCREMENT,
+        dash_sede_nombre INT(11) NOT NULL,
+        dash_sede_direccion VARCHAR(20) NULL,
+        dash_sede_telefono VARCHAR(20) NULL,
+        PRIMARY KEY (dash_sede_id)
+    );";
+    $createsede = dbDelta($sqlsede,true);
+
+    $sqlClass = "CREATE TABLE IF NOT EXISTS wp_dash_class( dash_class_id INT(11) NOT NULL AUTO_INCREMENT, 
+    dash_student_id INT(11) NOT NULL, 
+    dash_coach_id INT(11) NOT NULL, 
+    dash_sede_id INT(11) NOT NULL, 
+    id_user BIGINT(20) unsigned NOT NULL, 
+    dash_class_date DATE NOT NULL, 
+    PRIMARY KEY (dash_class_id), 
+    FOREIGN KEY (dash_student_id) REFERENCES wp_dash_student(dash_student_id) ON DELETE CASCADE, 
+    FOREIGN KEY (dash_coach_id) REFERENCES wp_dash_coach(dash_coach_id) ON DELETE CASCADE, 
+    FOREIGN KEY (dash_sede_id) REFERENCES wp_dash_sede(dash_sede_id) ON DELETE CASCADE, 
+    FOREIGN KEY (id_user) REFERENCES wp_users(ID) ON DELETE CASCADE)";
+$createClass = dbDelta($sqlClass,true);
+
+
+
+
+    $sqlCalendar = "CREATE TABLE IF NOT EXISTS wp_dash_calendar(
+        dash_calendar_id INT(11) NOT NULL AUTO_INCREMENT,
+        dash_class_id INT(11) NOT NULL,
+        dash_calendar_color_evento VARCHAR(20) NULL,
+        dash_calendar_fecha_inicio VARCHAR(20) NULL,
+        dash_calendar_fecha_fin VARCHAR(20) NULL,
+        PRIMARY KEY (dash_calendar_id),
+        FOREIGN KEY (dash_class_id) 
+            REFERENCES wp_dash_class(dash_class_id) ON DELETE CASCADE
+    );";
+$createCalendar = dbDelta($sqlCalendar,true);
+
+
+
+$sqlreserva = "CREATE TABLE IF NOT EXISTS wp_dash_reserva(
+    dash_reserva_id INT(11) NOT NULL AUTO_INCREMENT,
+    dash_student_id INT(11) NOT NULL,
+    dash_coach_id INT(11) NOT NULL,
+    dash_sede_id INT(11) NOT NULL,
+    id_user BIGINT(20) unsigned NOT NULL,
+    dash_reserva_date DATE NOT NULL,
+    PRIMARY KEY (dash_reserva_id),
+    FOREIGN KEY (dash_student_id) 
+        REFERENCES wp_dash_student(dash_student_id) ON DELETE CASCADE,
+    FOREIGN KEY (dash_coach_id) 
+        REFERENCES wp_dash_coach(dash_coach_id) ON DELETE CASCADE,
+    FOREIGN KEY (dash_sede_id) 
+        REFERENCES wp_dash_sede(dash_sede_id) ON DELETE CASCADE,
+    FOREIGN KEY (id_user) 
+        REFERENCES wp_users(ID) ON DELETE CASCADE   
+);";
+$createClass = dbDelta($sqlreserva,true);
+
+
+
+
 
 
    
@@ -24,9 +105,7 @@ function EnablePluginForm(){
 
 function DisablePluginForm(){
     global $wpdb;
-    
-   //  $sqlDelete = "";
-    $sqlDelete = "DROP TABLE {$wpdb->prefix}questions_forms, {$wpdb->prefix}list_forms, {$wpdb->prefix}list_company, {$wpdb->prefix}list_inspectors, {$wpdb->prefix}list_users, {$wpdb->prefix}list_answers, {$wpdb->prefix}options_questions, {$wpdb->prefix}list_questions, {$wpdb->prefix}type_questions;";
+    $sqlDelete = "DROP TABLE {$wpdb->prefix}dash_class, {$wpdb->prefix}dash_calendar, {$wpdb->prefix}dash_student, {$wpdb->prefix}dash_coach, {$wpdb->prefix}dash_sede, {$wpdb->prefix}dash_reserva;";
     $wpdb->query($sqlDelete);
     flush_rewrite_rules();
 }
