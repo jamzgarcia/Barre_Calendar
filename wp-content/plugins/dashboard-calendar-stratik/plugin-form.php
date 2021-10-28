@@ -154,14 +154,8 @@ add_action('admin_enqueue_scripts', 'EncolarJS');
 
 // shotrcodes 
 
-<<<<<<< HEAD
 function viewDashboardAdmin(){
   $adminData = new DashboardAdmin();
-=======
-function viewDashboardAdmin()
-{
-  $adminData = new adminQuestions();
->>>>>>> eb2bcf9d306c191af764218cb96f48f23121a39d
   $html = $adminData->layoutDashboardAdmin();
   return $html;
 }
