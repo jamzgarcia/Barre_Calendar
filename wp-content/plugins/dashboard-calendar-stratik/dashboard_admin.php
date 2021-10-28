@@ -1,7 +1,7 @@
 <?php
 $adminData = new adminQuestions();
-$data_type = $adminData->getTypeQuestions();
-$data_forms = $adminData->getListForms();
+// $data_type = $adminData->getTypeQuestions();
+// $data_forms = $adminData->getListForms();
 ?>
 <br>
 <div class="card" style="width: 18rem;">

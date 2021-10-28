@@ -170,15 +170,19 @@ function add_styles_page()
     wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
     wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
     wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Didact+Gothic");
-    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");    
     wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    wp_enqueue_style('datatables_css', "https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css");    
     wp_enqueue_style('custom_css', plugins_url('admin/css/view_dashboard_admin.css', __FILE__));
-    wp_enqueue_script('jquery_js', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js", array('jquery'));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.4.1.min.js", array('jquery'));
     wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
     wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
     wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
     wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('datatables_js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array('jquery')); 
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
     wp_enqueue_script('admin_page', plugins_url('admin/js/view_dashboard_admin.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
