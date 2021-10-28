@@ -1,0 +1,73 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border" id="legend_name"></legend>
+    <div class="control-group p-3">
+        <div class="control-group p-3 rounded alert-info">
+            <label class="label label-default font-weight-bold">Para crear una pregunta elige el tipo que deseas utilizar y sigue los pasos.</label>
+        </div>
+        <hr class="style1">
+        <div class="row">
+            <div class="col-xl-12">
+                <label class="control-label input-label font-weight-bold" id="label_question_description">Escriba el enunciado de la pregunta:</label>
+                <div class="input-group"><textarea id="question_description" placeholder="Enunciado" rows="2" class="form-control form-control-sm" value=""></textarea></div>
+            </div>
+        </div>
+        <hr class="style1">
+        <div class="row">
+            <div class="col-xl-3">
+                <label class="control-label input-label font-weight-bold" id="label_selectType">Seleccione el tipo de pregunta:</label>
+                <div class="input-group" id="selectType">
+                    <select class="form-control novelty form-control-sm selectType">
+                        <option value="--" selected>--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-1">
+
+            </div>
+            <div class="col-xl-1">
+                <div id="div_num_options" class="d-none animated fadeIn">
+                    <label class="control-label input-label font-weight-bold" id="label_num_options">N° Opciones:</label>
+                    <input id="num_options" class="form-control form-control-sm" value="" type="number" maxlength="2" size="1">
+                </div>
+            </div>
+            <div class="col-xl-1">
+
+            </div>
+            <div class="col-xl-2 inputGroupContainer">
+                <label class="control-label input-label font-weight-bold" id="label_attached">Agregar imagen a la pregunta:</label>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class='btn btn-outline-success btn-sm attached' data-val='Si'><input class='form-control' type='radio' name='attached'>Si <i class="fa fa-check" aria-hidden="true"></i></label>
+                    <label class='btn btn-outline-danger btn-sm attached active' data-val='No'><input class='form-control' type='radio' name='attached'>No <i class="fa fa-times" aria-hidden="true"></i></label>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div id="div_link_attached" class="d-none animated fadeIn">
+                    <label class="control-label input-label font-weight-bold" id="label_fileAttached">Adjunte el archivo</label>
+                    <div class="form-group">
+                        <div class="input-group input-file" name="fileAttached">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-choose btn-sm" type="button">Adjuntar</button>
+                            </span>
+                            <input type="text" class="form-control form-control-sm" placeholder='Escoge el archivo...' />
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-reset btn-sm" type="button">Reset</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-none animated fadeIn" id="div_options">
+
+        </div>
+        <hr class="style1">
+        <div class="row text-center">
+            <div class="col-lg-12 inputGroupContainer">
+                <button type="button" id="saveQuestion" class="btn btn-outline-success btn-sm">Guardar Pregunta <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+            </div>
+            <!-- <div class="col-lg-6 inputGroupContainer">
+                        <button type="button" id="exitQuestion" class="btn btn-outline-danger btn-sm"> <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                    </div> -->
+        </div>
+    </div>
+</fieldset>

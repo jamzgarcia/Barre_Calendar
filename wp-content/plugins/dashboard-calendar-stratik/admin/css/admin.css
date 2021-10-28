@@ -1,0 +1,27 @@
+.bodyTheme{
+    font-size: 14px;
+    font-family: 'Asap', sans-serif;
+    /* font-family: Georgia, serif; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+.navbar{
+    font-size: 14px;
+    font-family: 'Asap', sans-serif;;
+    /* font-family: Georgia, serif; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+}
+.itemCorrect{
+    background: #73E97E;
+}
+.itemIncorrect{
+    background: #FF8282;
+}
+#ModalLarge{
+    margin-top: 100px;
+}
+#ModalObs{
+    margin-top: 100px;
+}
+#bodyTag p{
+    font-size: 16px;
+}

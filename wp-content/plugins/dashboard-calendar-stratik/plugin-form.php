@@ -12,6 +12,7 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 require(ABSPATH . "wp-content/plugins/dashboard-calendar-stratik/admin/controller/code128.php");
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classFunction.php');
 
+<<<<<<< HEAD
 function EnablePluginForm(){
   global $wpdb;
 
@@ -106,6 +107,19 @@ $createClass = dbDelta($sqlreserva,true);
 function DisablePluginForm(){
   global $wpdb;
   $sqlDelete = "DROP TABLE {$wpdb->prefix}dash_class, {$wpdb->prefix}dash_calendar, {$wpdb->prefix}dash_student, {$wpdb->prefix}dash_coach, {$wpdb->prefix}dash_sede, {$wpdb->prefix}dash_reserva;";
+=======
+function EnablePluginForm()
+{
+  global $wpdb;
+}
+
+function DisablePluginForm()
+{
+  global $wpdb;
+
+  //  $sqlDelete = "";
+  $sqlDelete = "DROP TABLE {$wpdb->prefix}questions_forms, {$wpdb->prefix}list_forms, {$wpdb->prefix}list_company, {$wpdb->prefix}list_inspectors, {$wpdb->prefix}list_users, {$wpdb->prefix}list_answers, {$wpdb->prefix}options_questions, {$wpdb->prefix}list_questions, {$wpdb->prefix}type_questions;";
+>>>>>>> 593c9316da29e268cc49096c18dc54248cf287dd
   $wpdb->query($sqlDelete);
   flush_rewrite_rules();
 }
