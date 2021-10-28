@@ -1,7 +1,7 @@
 <?php
 
 /* Clase Principal del Plugin Para generar las vistas necesarias. */
-class adminQuestions
+class DashboardAdmin
 {
 
 
