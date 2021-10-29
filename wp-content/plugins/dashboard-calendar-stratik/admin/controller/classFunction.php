@@ -1,12 +1,16 @@
 <?php
 
 /* Clase Principal del Plugin Para generar las vistas necesarias. */
-class adminQuestions
+class DashboardAdmin
 {
+<<<<<<< HEAD
 
 
 
   public function layoutDashboardAdmin()
+=======
+ public function layoutDashboardAdmin()
+>>>>>>> d1019147cbf0eef602e856d818e1aec078e513a0
   {
     global $wpdb;
     $html = "<!DOCTYPE html>
@@ -32,7 +36,7 @@ class adminQuestions
                 <div id='layoutSidenav_content'>
                 <main>
                   <div class='container-fluid'>
-                    <h1 class='mt-4'>BARRE MX</h1>
+                    <h1 class='mt-4' id='nameTitle'>BARRE MX ---</h1>
                     <ol class='breadcrumb mb-4'>
                       <li class='breadcrumb-item active'>Dashboard</li>
                     </ol>
