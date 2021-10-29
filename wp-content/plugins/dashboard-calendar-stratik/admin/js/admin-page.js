@@ -77,13 +77,13 @@ $(document).ready(function () {
     }); */
     $("#sendInfo").off("click");
     $("#sendInfo").click(function () {
-        var names = $("#names").val();
-        var last_names = $("#last_names").val();
-        var document = $("#document").val();
+        var evento = $("#evento").val();
+        var fecha_inicio = $("#fecha_inicio").val();
+        var fecha_fin = $("#fecha_fin").val();
         var validForm = validateForms([
-            { 'data': names, 'item': 'names', 'type': 'text', 'obligatory': true },
-            { 'data': last_names, 'item': 'last_names', 'type': 'text', 'obligatory': true },
-            { 'data': document, 'item': 'document', 'type': 'text', 'obligatory': true }
+            { 'data': evento, 'item': 'evento', 'type': 'text', 'obligatory': true },
+            { 'data': fecha_inicio, 'item': 'fecha_inicio', 'type': 'text', 'obligatory': true },
+            { 'data': fecha_fin, 'item': 'fecha_fin', 'type': 'text', 'obligatory': true }
         ]);
         var dataInfo = dataInformation();
         var validInfo = validateForms(dataInfo["items"]);
@@ -92,25 +92,15 @@ $(document).ready(function () {
             $("#sendInfo").attr('disabled', true);
             var dataRequest = new FormData();
             dataRequest.append('action', 'insertAnswers');
-            dataRequest.append('names', names);
-            dataRequest.append('last_names', last_names);
-            dataRequest.append('document', document);
-            dataRequest.append('dataSend', JSON.stringify(dataInfo["dataSend"]));
-            $.each(dataInfo["dataSend"], function (key, value) { 
-                if (value["data_type"] == 7) {
-                    var fileAttached = $("#fileAttached_" + key).prop('files')[0];
-                    dataRequest.append('fileAttached_' + key, fileAttached);
-                }
-            });
-            actionEntry = insertAnswers(dataRequest);
+            dataRequest.append('evento', evento);
+            dataRequest.append('fecha_inicio', fecha_inicio);
+            dataRequest.append('fecha_fin', fecha_fin);
+            dataRequest.append('dataSend', JSON.stringify(dataInfo["dataSend"]));            
+            actionEntry = insertCalendar(dataRequest);
             $.when(actionEntry).done(function (respAction) {
                 console.log(respAction);
                 toastr_message(respAction["code"], respAction["message"]);
-                var url = respAction["attached_report"].replaceAll('\\','/');
-                console.log(url);
-                setTimeout(function () { 
-                    window.open("../"+url, '_blank');
-                }, 3000);
+               
             }).fail(function (respFail) {
                 console.log(respFail);
             }).always(function (respAlways) {

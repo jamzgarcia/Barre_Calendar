@@ -11,6 +11,7 @@ define('root_file', plugin_dir_path(__file__));
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 require(ABSPATH . "wp-content/plugins/dashboard-calendar-stratik/admin/controller/code128.php");
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classFunction.php');
+include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classCalendar.php');
 
 function EnablePluginForm()
 {
@@ -162,6 +163,14 @@ function viewDashboardAdmin(){
 
 add_shortcode("view_dashboard_admin", "viewDashboardAdmin");
 
+/* ShortCode For Calenadar */
+
+function viewCalendar(){
+  $calendar = new Calendar();
+  $html = $calendar->layoutCalendarUsers();
+  return $html;
+}
+add_shortcode("view_calendar_users", "viewCalendar");
 
 function add_styles_page()
 {
@@ -185,6 +194,32 @@ function add_styles_page()
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
     wp_enqueue_script('admin_page', plugins_url('admin/js/view_dashboard_admin.js', __FILE__), array('jquery'));
+    wp_localize_script('request_js', 'SolicitudesAjax', [
+      'url' => admin_url('admin-ajax.php'),
+      'seguridad' => wp_create_nonce('seg')
+
+    ]);
+  }
+  elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_calendar_users')) {
+    wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/js/fullcalendar/lib/main.min.css', __FILE__));
+    wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Didact+Gothic");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    wp_enqueue_style('custom_css', plugins_url('admin/css/view_calendar_users.css', __FILE__));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.4.1.min.js", array('jquery'));
+    wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/fullcalendar/lib/main.min.js', __FILE__), array(''));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/moment.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('request_js', plugins_url('admin/js/fullcalendar/lib/locales/es.js', __FILE__), array('jquery'));
+    wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/view_calendar_users.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),
       'seguridad' => wp_create_nonce('seg')
