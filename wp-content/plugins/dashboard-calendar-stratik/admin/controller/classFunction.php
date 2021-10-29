@@ -6,7 +6,7 @@ class adminQuestions
 
 
 
- public function layoutDashboardAdmin()
+  public function layoutDashboardAdmin()
   {
     global $wpdb;
     $html = "<!DOCTYPE html>
@@ -189,7 +189,5 @@ class adminQuestions
               
               ";
     return $html;
-    
-  } 
-  
+  }
 }
