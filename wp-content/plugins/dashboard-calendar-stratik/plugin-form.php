@@ -131,10 +131,11 @@ function bootstrap_js($hook)
   /* if($hook != "plugin-test.php/admin/lista-encuestas.php"){
         return ;
     } */
-  wp_enqueue_script('jquery_js', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js", array('jquery'));
+  wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.6.0.js", array('jquery'));
   wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
   wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
   wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+  wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.bundle.min.js', __FILE__), array('jquery'));
 }
 add_action('admin_enqueue_scripts', 'bootstrap_js');
 
@@ -155,7 +156,8 @@ add_action('admin_enqueue_scripts', 'EncolarJS');
 
 // shotrcodes 
 
-function viewDashboardAdmin(){
+function viewDashboardAdmin()
+{
   $adminData = new DashboardAdmin();
   $html = $adminData->layoutDashboardAdmin();
   return $html;
@@ -178,6 +180,7 @@ function add_styles_page()
   if (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_dashboard_admin')) {
     wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
     wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('adminlte_css', plugins_url('admin/css/font-awesome/css/adminlte.min.css', __FILE__));
     wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Didact+Gothic");
     wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
     wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
@@ -192,6 +195,7 @@ function add_styles_page()
     wp_enqueue_script('datatablesjquery_js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array('jquery'));
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
     wp_enqueue_script('admin_page', plugins_url('admin/js/view_dashboard_admin.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
