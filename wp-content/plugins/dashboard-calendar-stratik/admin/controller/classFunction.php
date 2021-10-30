@@ -3,9 +3,6 @@
 /* Clase Principal del Plugin Para generar las vistas necesarias. */
 class DashboardAdmin
 {
-
-
-
   public function layoutDashboardAdmin()
   {
     global $wpdb;
