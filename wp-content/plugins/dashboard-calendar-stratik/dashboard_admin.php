@@ -1,5 +1,5 @@
 <?php
-$adminData = new adminQuestions();
+// $adminData = new adminQuestions();
 // $data_type = $adminData->getTypeQuestions();
 // $data_forms = $adminData->getListForms();
 ?>

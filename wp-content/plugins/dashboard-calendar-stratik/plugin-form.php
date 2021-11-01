@@ -230,5 +230,6 @@ function add_styles_page()
 
     ]);
   }
+  
 }
 add_action('wp_enqueue_scripts', 'add_styles_page');
