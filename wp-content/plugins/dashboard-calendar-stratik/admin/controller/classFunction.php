@@ -35,7 +35,7 @@ class DashboardAdmin
                 <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
                     Usuarios</a>
 
-                <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
+                <a href='http://localhost/wordpress/dashboard-coach/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
                     Coaches</a>
 
                 <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-stats lead mr-2'></i>
