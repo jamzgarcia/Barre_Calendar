@@ -6,23 +6,24 @@ class Coach
   public function formCoach()
   {
 
-     global $wpdb;
-            $wpdb->show_errors();
-            $current_user = wp_get_current_user();
- 
-            /*
+    global $wpdb;
+    $wpdb->show_errors();
+    $current_user = wp_get_current_user();
+
+    /*
             * @example Safe usage: $current_user = wp_get_current_user();
             * if ( ! ( $current_user instanceof WP_User ) ) {
             *     return;
             * }
             */
-            //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
-            //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
-            //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
-            //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
-            //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
-            //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
-            $id_user = $current_user->ID;
+    //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+    //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+    //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+    //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+    //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+    //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+    $id_user = $current_user->ID;
+
     $html = "<!doctype html>
 <html lang='en'>
 
@@ -118,6 +119,7 @@ class Coach
 
               <section class='bg-mix py-3'>
               <div class = 'container'>
+              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Coach </button></div>
                 <div class='table-responsive'>
                     <table id='coaches' class='table table-striped' style='width:100%'>
         <thead>
@@ -155,22 +157,48 @@ class Coach
                 <td>2009/01/12</td>
                 <td>$86,000</td>
             </tr>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
         </tbody>
         
     </table>
                     
                 </div>
                 </div>
+                <!-- Modal -->
+                  <div class='modal fade' id='nuevoCoach' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                      <div class='modal-content'>
+                        <div class='modal-header'>
+                          <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                          <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                          </button>
+                        </div>
+                        <div class='modal-body'>
+                          <form id='formCoach'>
+                            <div class='form-group'>
+                              <label for='dash_coach_nombre'>Nombre</label>
+                              <input type='text' class='form-control' id='dash_coach_nombre'>
+                              <label for='dash_coach_apellido'>Apellido</label>
+                              <input type='text' class='form-control' id='dash_coach_apellido'>
+                              <label for='dash_coach_correo'>Correo Electronico</label>
+                              <input type='email' class='form-control' id='dash_coach_correo'>
+                              <label for='dash_coach_fecha_nacimiento'>Fecha de Nacimiento</label>
+                              <input type='date' class='form-control' id='dash_coach_fecha_nacimiento'>
+                              
+                            </div>
+                            
+                            
+                            
+                          </form>
+                        </div>
+                        <div class='modal-footer'>
+                          <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                          <div class='row text-center'><div class='col-lg-12'><button type='button' class='btn btn-lg mr-4' id='sendInfoCoach'>Enviar</button></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </section>
 
               
@@ -180,18 +208,15 @@ class Coach
         </div>
 
         </div>
-    </div>
-
-    
-    
-        
+    </div> 
 </body>
 
 </html>
-    
-    
-    
+
     ";
+    $html .= "</tbody></table></div></div>";
+    $html .= "";
+
     return $html;
   }
 }

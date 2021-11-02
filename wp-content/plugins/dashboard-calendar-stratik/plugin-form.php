@@ -187,6 +187,64 @@ function viewCoaches()
 
 add_shortcode("view_coach_admin", "viewCoaches");
 
+function insertCoach()
+{
+  global $wpdb;
+  try {
+    if (isset($_POST)) {
+      //print_r($_POST);
+
+      $current_user = wp_get_current_user();
+
+      /*
+             * @example Safe usage: $current_user = wp_get_current_user();
+             * if ( ! ( $current_user instanceof WP_User ) ) {
+             *     return;
+             * }
+             */
+      //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+      //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+      //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+      //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+      //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+      //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+
+      $dataCoach = $_POST;
+      $tableCoach = "{$wpdb->prefix}list_intermediario";
+      $response = array();
+      // $date_inspeccion = $dataIntermediario["fecha_solicitud_insp"];
+      $names = $dataCoach["nameCoach"];
+      $lastName = $dataCoach["lastNameCoach"];
+      $email = $dataCoach["mailCoach"];
+      $dateCoach = $dataCoach["dateCoach"];
+
+
+
+      $dataInsert = array("dash_coach_nombre" => $names, "dash_coach_apellido" => $lastName, "dash_coach_correo" => $email, "dash_coach_fecha_nacimiento" => $dateCoach);
+      // var_dump($dataInsert); die;
+      $result = $wpdb->insert($tableCoach, $dataInsert);
+      if ($result == 1) {
+
+
+
+        $response = json_encode(array("code" => 200, "message" => "coach creado   Exitosamente", "result" => $result));
+      } else {
+        $response = json_encode(array("code" => 500, "message" => "Coach no pudo ser creado", "result" => $result));
+      }
+    } else {
+      $response = json_encode(array("code" => 400, "message" => "Los datos necesarios están incompletos"));
+    }
+    echo $response;
+  } catch (Exception $e) {
+    echo json_encode(array("code" => 500, "error" => $e));
+  }
+  wp_die();
+}
+
+add_action('wp_ajax_insertCoach', 'insertCoach');
+
+$wpdb->show_errors();
+
 function add_styles_page()
 {
   global $post;
@@ -289,6 +347,5 @@ function add_styles_page()
 
     ]);
   }
-  
 }
 add_action('wp_enqueue_scripts', 'add_styles_page');

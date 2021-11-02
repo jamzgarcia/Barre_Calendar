@@ -99,14 +99,16 @@ function statusQuestionForms(id_form, id_question, status) {
     });
 }
 
-function insertCompany(names, identify, address, type_society, business_name) {
+function insertCoach(nameCoach, lastNameCoach, emailCoach, dateCoach) {
     return $.ajax({
         type: "POST",
         url: url_dest,
         dataType: 'json',
-        data: { action: 'insertCompany', nonce: url_secure, names, identify, address, type_society, business_name }
+        data: { action: 'insertCoach', nonce: url_secure, nameCoach,lastNameCoach,emailCoach,dateCoach }
     });
 }
+
+$wpdb->show_errors();
 
 function insertInspectors(names, last_names, document, mobile, email, company) {
     return $.ajax({
