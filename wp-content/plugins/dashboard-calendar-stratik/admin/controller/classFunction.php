@@ -1,4 +1,5 @@
 <?php
+$ruta = ABSPATH . "wp-content/plugins/plugin-form-custom/admin/images/logoBarre.png";
 
 /* Clase Principal del Plugin Para generar las vistas necesarias. */
 class DashboardAdmin
@@ -25,14 +26,14 @@ class DashboardAdmin
         <!-- Sidebar -->
         <div id='sidebar-container' class='bg-secondary'>
             <div class='logo'>
-            <img src='admin/images/logoBarre.png' class='img-fluid rounded-circle avatar mr-2'>
+            <img src='https://jamzpcs.com/imgBarre/logoBarre.png'  width='70' height='70'class='img-fluid rounded-circle avatar mr-2'>
                 <h4 class='text-light font-weight-bold mb-0'>BarreMX</h4>
             </div>
             <div class='menu'>
                 <a href='http://localhost/wordpress/dashboard-admin/' class='d-block text-light p-3 border-0'><i class='icon ion-md-apps lead mr-2'></i>
                     Principal</a>
 
-                <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
+                <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
                     Usuarios</a>
 
                 <a href='http://localhost/wordpress/dashboard-coach/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>

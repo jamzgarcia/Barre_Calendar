@@ -186,6 +186,7 @@ function viewCoaches()
   return $html;
 }
 
+add_shortcode("view_coach_admin", "viewCoaches");
 function viewStudents()
 {
   $studentData = new Student();

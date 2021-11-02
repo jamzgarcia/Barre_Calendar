@@ -43,17 +43,17 @@ class Student
         <!-- Sidebar -->
         <div id='sidebar-container' class='bg-secondary'>
             <div class='logo'>
-            <img src='admin/images/logoBarre.png' class='img-fluid rounded-circle avatar mr-2'>
+            <img src='https://jamzpcs.com/imgBarre/logoBarre.png'  width='70' height='70' class='img-fluid rounded-circle avatar mr-2'>
                 <h4 class='text-light font-weight-bold mb-0'>BarreMX</h4>
             </div>
             <div class='menu'>
                 <a href='http://localhost/wordpress/dashboard-admin/' class='d-block text-light p-3 border-0'><i class='icon ion-md-apps lead mr-2'></i>
                     Principal</a>
 
-                <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
+                <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
                     Usuarios</a>
 
-                <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
+                <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
                     Coaches</a>
 
                 <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-stats lead mr-2'></i>
@@ -128,6 +128,7 @@ class Student
                 <th>Apellido</th>
                 <th>Correo Electronico</th>
                 <th>Fecha de Nacimiento</th>
+                <th>Tipo de Estudiante</th>
                 
             </tr>
         </thead>
@@ -137,6 +138,7 @@ class Student
                 <td>System Architect</td>
                 <td>Edinburgh</td>
                 <td>02/07/1989</td>
+                <td>Presencial</td>
                
             </tr>
             <tr>
@@ -144,6 +146,7 @@ class Student
                 <td>Accountant</td>
                 <td>Tokyo</td>
                 <td>02/02/1998</td>
+                <td>Online</td>
                 
             </tr>
             <tr>
@@ -151,6 +154,7 @@ class Student
                 <td>Junior Technical Author</td>
                 <td>San Francisco</td>
                 <td>02/02/1991</td>
+                <td>Online/Presencial</td>
                 
             </tr>
 
@@ -173,14 +177,22 @@ class Student
                         <div class='modal-body'>
                           <form id='formCoach'>
                             <div class='form-group'>
-                              <label for='dash_coach_nombre'>Nombre</label>
-                              <input type='text' class='form-control' id='dash_coach_nombre'>
-                              <label for='dash_coach_apellido'>Apellido</label>
-                              <input type='text' class='form-control' id='dash_coach_apellido'>
-                              <label for='dash_coach_correo'>Correo Electronico</label>
-                              <input type='email' class='form-control' id='dash_coach_correo'>
-                              <label for='dash_coach_fecha_nacimiento'>Fecha de Nacimiento</label>
-                              <input type='date' class='form-control' id='dash_coach_fecha_nacimiento'>
+                              <label for='dash_student_nombre'>Nombre</label>
+                              <input type='text' class='form-control' id='dash_student_nombre'>
+                              <label for='dash_student_apellido'>Apellido</label>
+                              <input type='text' class='form-control' id='dash_student_apellido'>
+                              <label for='dash_student_correo'>Correo Electronico</label>
+                              <input type='email' class='form-control' id='dash_student_correo'>
+                              <label for='dash_student_fecha_nacimiento'>Fecha de Nacimiento</label>
+                              <input type='date' class='form-control' id='dash_student_fecha_nacimiento'>
+                              <label for='dash_student_fecha_nacimiento'>Fecha de Nacimiento</label>
+                              <input type='date' class='form-control' id='dash_student_fecha_nacimiento'>
+                              <select class='form-select' aria-label='Default select example'>
+                                <option selected>Open this select menu</option>
+                                <option value='1'>One</option>
+                                <option value='2'>Two</option>
+                                <option value='3'>Three</option>
+                              </select>
                               
                             </div>
                             
