@@ -1,9 +1,9 @@
 <?php
 
 /* Clase Principal del Plugin Para el Coaches. */
-class Coach
+class Student
 {
-  public function formCoach()
+  public function formStudent()
   {
 
     global $wpdb;
@@ -109,7 +109,7 @@ class Coach
                   <div class='container'>
                       <div class='row'>
                           <div class='col-lg-9 col-md-8'>
-                            <h2 class='font-weight-bold mb-0'>Coaches</h2>
+                            <h2 class='font-weight-bold mb-0'>Estudiantes</h2>
                             
                           </div>
                           
@@ -119,9 +119,9 @@ class Coach
 
               <section class='bg-mix py-3'>
               <div class = 'container'>
-              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Coach </button></div>
+              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Estudiante </button></div>
                 <div class='table-responsive'>
-                    <table id='coaches' class='table table-striped' style='width:100%'>
+                    <table id='students' class='table table-striped' style='width:100%'>
         <thead>
             <tr>
                 <th>Nombre</th>
