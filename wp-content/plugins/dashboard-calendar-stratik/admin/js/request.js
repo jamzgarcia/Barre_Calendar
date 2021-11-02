@@ -108,7 +108,7 @@ function insertCoach(nameCoach, lastNameCoach, emailCoach, dateCoach) {
     });
 }
 
-$wpdb->show_errors();
+
 
 function insertInspectors(names, last_names, document, mobile, email, company) {
     return $.ajax({
