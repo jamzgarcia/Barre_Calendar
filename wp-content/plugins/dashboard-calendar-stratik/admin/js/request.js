@@ -99,12 +99,12 @@ function statusQuestionForms(id_form, id_question, status) {
     });
 }
 
-function insertCoach(nameCoach, lastNameCoach, emailCoach, dateCoach) {
+function insertCoach(nameCoach, lastNameCoach, dash_coach_correo, dateCoach) {
     return $.ajax({
         type: "POST",
         url: url_dest,
         dataType: 'json',
-        data: { action: 'insertCoach', nonce: url_secure, nameCoach,lastNameCoach,emailCoach,dateCoach }
+        data: { action: 'insertCoach', nonce: url_secure, nameCoach,lastNameCoach,dash_coach_correo,dateCoach }
     });
 }
 

@@ -190,9 +190,10 @@ add_shortcode("view_coach_admin", "viewCoaches");
 function insertCoach()
 {
   global $wpdb;
+  $wpdb->show_errors();
   try {
     if (isset($_POST)) {
-      //print_r($_POST);
+      print_r($_POST); //debug
 
       $current_user = wp_get_current_user();
 
@@ -210,24 +211,17 @@ function insertCoach()
       //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
 
       $dataCoach = $_POST;
-      $tableCoach = "{$wpdb->prefix}list_intermediario";
+      $tableCoach = "{$wpdb->prefix}dash_coach";
       $response = array();
-      // $date_inspeccion = $dataIntermediario["fecha_solicitud_insp"];
       $names = $dataCoach["nameCoach"];
       $lastName = $dataCoach["lastNameCoach"];
-      $email = $dataCoach["mailCoach"];
+      $dash_coach_correo = $dataCoach["dash_coach_correo"];
       $dateCoach = $dataCoach["dateCoach"];
-
-
-
-      $dataInsert = array("dash_coach_nombre" => $names, "dash_coach_apellido" => $lastName, "dash_coach_correo" => $email, "dash_coach_fecha_nacimiento" => $dateCoach);
+      $dataInsert = array("dash_coach_nombre" => $names, "dash_coach_apellido" => $lastName, "dash_coach_correo" => $dash_coach_correo, "dash_coach_fecha_nacimiento" => $dateCoach);
       // var_dump($dataInsert); die;
       $result = $wpdb->insert($tableCoach, $dataInsert);
       if ($result == 1) {
-
-
-
-        $response = json_encode(array("code" => 200, "message" => "coach creado   Exitosamente", "result" => $result));
+        $response = json_encode(array("code" => 200, "message" => "coach creado Exitosamente", "result" => $result));
       } else {
         $response = json_encode(array("code" => 500, "message" => "Coach no pudo ser creado", "result" => $result));
       }
@@ -243,7 +237,6 @@ function insertCoach()
 
 add_action('wp_ajax_insertCoach', 'insertCoach');
 
-$wpdb->show_errors();
 
 function add_styles_page()
 {
@@ -335,6 +328,7 @@ function add_styles_page()
     wp_enqueue_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", array('jquery'));
     wp_enqueue_script('chart_js', "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js", array('jquery'));
     wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('sweetalert_js',"https://cdn.jsdelivr.net/npm/sweetalert2@10");
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));

@@ -25,19 +25,19 @@ $("#sendInfoCoach").click(function () {
         alert("Actualizar Datos Coach");
         var nameCoach = $("#dash_coach_nombre").val();
         var lastNameCoach = $("#dash_coach_apellido").val();
-        var emailCoach = $("#dash_coach_correo").val();
+        var dash_coach_correo = $("#dash_coach_correo").val();
         var dateCoach = $("#dash_coach_fecha_nacimiento").val();
         
         console.log(nameCoach);
         console.log(lastNameCoach);
-        console.log(emailCoach);
+        console.log(dash_coach_correo);
         console.log(dateCoach);
         
         
         var validForm = validateForms([
             { 'data': nameCoach, 'item': 'nameCoach', 'type': 'text', 'obligatory': true },
             { 'data': lastNameCoach, 'item': 'lastNameCoach', 'type': 'text', 'obligatory': true },
-            { 'data': emailCoach, 'item': 'emailCoach', 'type': 'email', 'obligatory': true },
+            { 'data': dash_coach_correo, 'item': 'dash_coach_correo', 'type': 'email', 'obligatory': true },
             { 'data': dateCoach, 'item': 'dateCoach', 'type': 'date', 'obligatory': true }
             
             
@@ -45,7 +45,7 @@ $("#sendInfoCoach").click(function () {
         if (validForm["validate"]) {
             $("#sendInfoCoach").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
             $("#sendInfoCoach").attr('disabled', true);
-            actionEntry = insertCoach(nameCoach,lastNameCoach,emailCoach,dateCoach); 
+            actionEntry = insertCoach(nameCoach,lastNameCoach,dash_coach_correo,dateCoach); 
             $.when(actionEntry).done(function (respAction) {
                 console.log(respAction);
             }).fail(function (respFail) {
@@ -62,7 +62,7 @@ $("#sendInfoCoach").click(function () {
                   icon: 'success',
                   title: 'Coach Actualizado Correctamente!',
                   showConfirmButton: false,
-                  timer: 1500
+                  timer: 1500 
                 })
                 location.reload();
                 console.log("Actualizar informacion  del coach oki!!");
