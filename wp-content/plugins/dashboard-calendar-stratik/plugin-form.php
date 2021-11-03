@@ -210,6 +210,58 @@ function viewReservas()
 
 add_shortcode("view_reserva_user", "viewReservas");
 
+function insertStudent()
+{
+  global $wpdb;
+  $wpdb->show_errors();
+  try {
+    if (isset($_POST)) {
+      print_r($_POST); //debug
+
+      $current_user = wp_get_current_user();
+
+      /*
+             * @example Safe usage: $current_user = wp_get_current_user();
+             * if ( ! ( $current_user instanceof WP_User ) ) {
+             *     return;
+             * }
+             */
+      //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+      //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+      //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+      //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+      //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+      //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+
+      $dataStudent = $_POST;
+      $tableStudent = "{$wpdb->prefix}dash_student";
+      $response = array();
+      $names = $dataStudent["nameStudent"];
+      $lastName = $dataStudent["lastNameStudent"];
+      $dashStudentCorreo = $dataStudent["dashStudentCorreo"];
+      $dateStudent = $dataStudent["dateStudent"];
+      $typeStudent = $dataStudent["typeStudent"];
+      $dataInsert = array("dash_student_nombre" => $names, "dash_student_apellido" => $lastName, "dash_student_correo" => $dashStudentCorreo, "dash_student_fecha_nacimiento" => $dateStudent, "dash_student_tipo_estudiante" => $typeStudent);
+      // var_dump($dataInsert); die;
+      $result = $wpdb->insert($tableStudent, $dataInsert);
+      if ($result == 1) {
+        $response = json_encode(array("code" => 200, "message" => "Estudiante creado Exitosamente", "result" => $result));
+      } else {
+        $response = json_encode(array("code" => 500, "message" => "Estudiante no pudo ser creado", "result" => $result));
+      }
+    } else {
+      $response = json_encode(array("code" => 400, "message" => "Los datos necesarios están incompletos"));
+    }
+    echo $response;
+  } catch (Exception $e) {
+    echo json_encode(array("code" => 500, "error" => $e));
+  }
+  wp_die();
+}
+
+add_action('wp_ajax_insertStudent', 'insertStudent');
+
+
 function insertCoach()
 {
   global $wpdb;
@@ -434,7 +486,7 @@ function add_styles_page()
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
-    wp_enqueue_script('admin_page', plugins_url('admin/js/student.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/reserva.js', __FILE__), array('jquery'));
     wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),

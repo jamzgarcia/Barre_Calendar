@@ -53,7 +53,7 @@ class Student
                 <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
                     Usuarios</a>
 
-                <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
+                <a href='http://localhost/wordpress/dashboard-coach/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
                     Coaches</a>
 
                 <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-stats lead mr-2'></i>
@@ -119,7 +119,7 @@ class Student
 
               <section class='bg-mix py-3'>
               <div class = 'container'>
-              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Estudiante </button></div>
+              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end '><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Estudiante </button></div>
                 <div class='table-responsive'>
                     <table id='students' class='table table-striped' style='width:100%'>
         <thead>
@@ -165,7 +165,7 @@ class Student
                 </div>
                 </div>
                 <!-- Modal -->
-                  <div class='modal fade' id='nuevoCoach' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                  <div class='modal fade' id='nuevoStudent' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
                       <div class='modal-content'>
                         <div class='modal-header'>
@@ -175,7 +175,7 @@ class Student
                           </button>
                         </div>
                         <div class='modal-body'>
-                          <form id='formCoach'>
+                          <form id='formStudent'>
                             <div class='form-group'>
                               <label for='dash_student_nombre'>Nombre</label>
                               <input type='text' class='form-control' id='dash_student_nombre'>
@@ -185,14 +185,8 @@ class Student
                               <input type='email' class='form-control' id='dash_student_correo'>
                               <label for='dash_student_fecha_nacimiento'>Fecha de Nacimiento</label>
                               <input type='date' class='form-control' id='dash_student_fecha_nacimiento'>
-                              <label for='dash_student_fecha_nacimiento'>Fecha de Nacimiento</label>
-                              <input type='date' class='form-control' id='dash_student_fecha_nacimiento'>
-                              <select class='form-select' aria-label='Default select example'>
-                                <option selected>Open this select menu</option>
-                                <option value='1'>One</option>
-                                <option value='2'>Two</option>
-                                <option value='3'>Three</option>
-                              </select>
+                              <label for='dash_student_tipo_estudiante'>Tipo de Estudiante</label><br>
+                              <input type='text' class='form-control' id='dash_student_tipo_estudiante'>
                               
                             </div>
                             
@@ -202,7 +196,7 @@ class Student
                         </div>
                         <div class='modal-footer'>
                           <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                          <div class='row text-center'><div class='col-lg-12'><button type='button' class='btn btn-lg mr-4' id='sendInfoCoach'>Enviar</button></div></div>
+                          <div class='row text-center'><div class='col-lg-12'><button type='button' class='btn btn-lg mr-4' id='sendInfoStudent'>Enviar</button></div></div>
                         </div>
                       </div>
                     </div>

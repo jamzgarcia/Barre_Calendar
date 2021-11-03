@@ -119,7 +119,7 @@ class Coach
 
               <section class='bg-mix py-3'>
               <div class = 'container'>
-              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Coach </button></div>
+              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end'><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Coach </button></div>
                 <div class='table-responsive'>
                     <table id='coaches' class='table table-striped' style='width:100%'>
         <thead>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log('coach.js ingrensado ok');
+    console.log('student.js ingrensado ok');
     
     $('#students').DataTable({
         //para cambiar el lenguaje a español
@@ -19,53 +19,56 @@ $(document).ready(function() {
                      "sProcessing":"Procesando...",
                 }
         });
-        $("#sendInfoCoach").off("click");
-$("#sendInfoCoach").click(function () {
+        $("#sendInfoStudent").off("click");
+$("#sendInfoStudent").click(function () {
         console.log("dio clic para update");
-        alert("Actualizar Datos Coach");
-        var nameCoach = $("#dash_coach_nombre").val();
-        var lastNameCoach = $("#dash_coach_apellido").val();
-        var dash_coach_correo = $("#dash_coach_correo").val();
-        var dateCoach = $("#dash_coach_fecha_nacimiento").val();
+        alert("Actualizar Datos Estudiante");
+        var nameStudent = $("#dash_student_nombre").val();
+        var lastNameStudent = $("#dash_student_apellido").val();
+        var dashStudentCorreo = $("#dash_student_correo").val();
+        var dateStudent = $("#dash_student_fecha_nacimiento").val();
+        var typeStudent = $("#dash_student_tipo_estudiante").val();
         
-        console.log(nameCoach);
-        console.log(lastNameCoach);
-        console.log(dash_coach_correo);
-        console.log(dateCoach);
+        console.log(nameStudent);
+        console.log(lastNameStudent);
+        console.log(dashStudentCorreo);
+        console.log(dateStudent);
+        console.log(typeStudent);
         
         
         var validForm = validateForms([
-            { 'data': nameCoach, 'item': 'nameCoach', 'type': 'text', 'obligatory': true },
-            { 'data': lastNameCoach, 'item': 'lastNameCoach', 'type': 'text', 'obligatory': true },
-            { 'data': dash_coach_correo, 'item': 'dash_coach_correo', 'type': 'email', 'obligatory': true },
-            { 'data': dateCoach, 'item': 'dateCoach', 'type': 'date', 'obligatory': true }
+            { 'data': nameStudent, 'item': 'nameStudent', 'type': 'text', 'obligatory': true },
+            { 'data': lastNameStudent, 'item': 'lastNameStudent', 'type': 'text', 'obligatory': true },
+            { 'data': dashStudentCorreo, 'item': 'dashStudentCorreo', 'type': 'email', 'obligatory': true },
+            { 'data': dateStudent, 'item': 'dateStudent', 'type': 'date', 'obligatory': true },
+            { 'data': typeStudent, 'item': 'typeStudent', 'type': 'text', 'obligatory': true }
             
             
         ]);
         if (validForm["validate"]) {
-            $("#sendInfoCoach").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
-            $("#sendInfoCoach").attr('disabled', true);
-            actionEntry = insertCoach(nameCoach,lastNameCoach,dash_coach_correo,dateCoach); 
+            $("#sendInfoStudent").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
+            $("#sendInfoStudent").attr('disabled', true);
+            actionEntry = insertStudent(nameStudent,lastNameStudent,dashStudentCorreo,dateStudent, typeStudent); 
             $.when(actionEntry).done(function (respAction) {
                 console.log(respAction);
             }).fail(function (respFail) {
                 console.log(respFail);
             }).always(function (respAlways) {
-                $("#sendInfoCoach").html('Guardar Datos <i class="fa fa-floppy-o" aria-hidden="true"></i>');
+                $("#sendInfoStudent").html('Guardar Datos <i class="fa fa-floppy-o" aria-hidden="true"></i>');
                 $("#updateInfoUser").removeAttr('disabled');
                 $(".itemIncorrect").each(function () {
                     $(this).removeClass("itemIncorrect");
                 });
-                $("#formCoach")[0].reset();
+                $("#formStudent")[0].reset();
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',
-                  title: 'Coach Actualizado Correctamente!',
+                  title: 'Estudiante Actualizado Correctamente!',
                   showConfirmButton: false,
                   timer: 1500 
                 })
                 location.reload();
-                console.log("Actualizar informacion  del coach oki!!");
+                console.log("Actualizar informacion  del estudiante oki!!");
             });
         }
         else {
