@@ -13,6 +13,8 @@ require(ABSPATH . "wp-content/plugins/dashboard-calendar-stratik/admin/controlle
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classFunction.php');
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classCalendar.php');
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classCoach.php');
+include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classStudent.php');
+include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classReserva.php');
 
 function EnablePluginForm()
 {
@@ -187,6 +189,79 @@ function viewCoaches()
 
 add_shortcode("view_coach_admin", "viewCoaches");
 
+/* ShortCode For Estudiantes */
+function viewStudents()
+{
+  $studentData = new Student();
+  $html = $studentData->formStudent();
+  return $html;
+}
+
+add_shortcode("view_student_user", "viewStudents");
+
+/* ShortCode For Reservas */
+
+function viewReservas()
+{
+  $reservaData = new Reserva();
+  $html = $reservaData->formReserva();
+  return $html;
+}
+
+add_shortcode("view_reserva_user", "viewReservas");
+
+function insertStudent()
+{
+  global $wpdb;
+  $wpdb->show_errors();
+  try {
+    if (isset($_POST)) {
+      print_r($_POST); //debug
+
+      $current_user = wp_get_current_user();
+
+      /*
+             * @example Safe usage: $current_user = wp_get_current_user();
+             * if ( ! ( $current_user instanceof WP_User ) ) {
+             *     return;
+             * }
+             */
+      //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+      //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+      //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+      //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+      //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+      //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+
+      $dataStudent = $_POST;
+      $tableStudent = "{$wpdb->prefix}dash_student";
+      $response = array();
+      $names = $dataStudent["nameStudent"];
+      $lastName = $dataStudent["lastNameStudent"];
+      $dashStudentCorreo = $dataStudent["dashStudentCorreo"];
+      $dateStudent = $dataStudent["dateStudent"];
+      $typeStudent = $dataStudent["typeStudent"];
+      $dataInsert = array("dash_student_nombre" => $names, "dash_student_apellido" => $lastName, "dash_student_correo" => $dashStudentCorreo, "dash_student_fecha_nacimiento" => $dateStudent, "dash_student_tipo_estudiante" => $typeStudent);
+      // var_dump($dataInsert); die;
+      $result = $wpdb->insert($tableStudent, $dataInsert);
+      if ($result == 1) {
+        $response = json_encode(array("code" => 200, "message" => "Estudiante creado Exitosamente", "result" => $result));
+      } else {
+        $response = json_encode(array("code" => 500, "message" => "Estudiante no pudo ser creado", "result" => $result));
+      }
+    } else {
+      $response = json_encode(array("code" => 400, "message" => "Los datos necesarios están incompletos"));
+    }
+    echo $response;
+  } catch (Exception $e) {
+    echo json_encode(array("code" => 500, "error" => $e));
+  }
+  wp_die();
+}
+
+add_action('wp_ajax_insertStudent', 'insertStudent');
+
+
 function insertCoach()
 {
   global $wpdb;
@@ -276,6 +351,7 @@ function add_styles_page()
       'seguridad' => wp_create_nonce('seg')
 
     ]);
+<<<<<<< HEAD
   }elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_calendar_users')) {
       wp_enqueue_style('bootstrap_css',plugins_url('admin/css/bootstrap/css/bootstrap.min.css',__FILE__));
         wp_enqueue_style('font_awesome_css',plugins_url('admin/css/font-awesome/css/font-awesome.min.css',__FILE__));
@@ -302,6 +378,75 @@ function add_styles_page()
         'seguridad' => wp_create_nonce('seg')  
       ]);
 
+=======
+  } /*elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_calendar_users')) {
+    wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/js/fullcalendar/lib/main.min.css', __FILE__));
+    wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Didact+Gothic");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    wp_enqueue_style('custom_css', plugins_url('admin/css/view_calendar_users.css', __FILE__));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.4.1.min.js", array('jquery'));
+    wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/fullcalendar/lib/main.min.js', __FILE__), array(''));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/moment.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('request_js', plugins_url('admin/js/fullcalendar/lib/locales/es.js', __FILE__), array('jquery'));
+    wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/view_calendar_users.js', __FILE__), array('jquery'));
+    wp_localize_script('request_js', 'SolicitudesAjax', [
+      'url' => admin_url('admin-ajax.php'),
+      'seguridad' => wp_create_nonce('seg')
+
+    ]);
+  }*/ elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_calendar_users')) {
+    wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('adminlte_css', plugins_url('admin/css/font-awesome/css/adminlte.min.css', __FILE__));
+    wp_enqueue_style('styles_css', plugins_url('admin/css/style.css', __FILE__));
+    wp_enqueue_style('asap_font', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+    wp_enqueue_style('fullcalendar_font', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css");
+    wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Muli:300,700&display=swap");
+    wp_enqueue_style('icon_font', "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    wp_enqueue_style('cloudflare_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css");
+    wp_enqueue_style('datatables_css', "https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css");
+    wp_enqueue_style('custom_css', plugins_url('admin/css/view_dashboard_admin.css', __FILE__));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.4.1.min.js", array('jquery'));
+    wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('codejquery_js', "https://code.jquery.com/jquery-3.5.1.js", array('jquery'));
+    wp_enqueue_script('fullcalendar_js', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js", array('jquery'));
+    wp_enqueue_script('fullcalendar_js', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/locales-all.js", array('jquery'));
+    wp_enqueue_script('datatables1_js', "https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('datatables2_js', "https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", array('jquery'));
+    wp_enqueue_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", array('jquery'));
+    wp_enqueue_script('chart_js', "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
+    wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    // wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    // wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
+    wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/calendario.js', __FILE__), array('jquery'));
+    wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
+    wp_localize_script('request_js', 'SolicitudesAjax', [
+      'url' => admin_url('admin-ajax.php'),
+      'seguridad' => wp_create_nonce('seg')
+
+    ]);
+>>>>>>> 5ec9c91c024e83bde1c758cc33c875aa4c4a65ee
   } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_coach_admin')) {
     wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
     wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
@@ -329,12 +474,90 @@ function add_styles_page()
     wp_enqueue_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", array('jquery'));
     wp_enqueue_script('chart_js', "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js", array('jquery'));
     wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
-    wp_enqueue_script('sweetalert_js',"https://cdn.jsdelivr.net/npm/sweetalert2@10");
+    wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
     wp_enqueue_script('admin_page', plugins_url('admin/js/coach.js', __FILE__), array('jquery'));
+    wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
+    wp_localize_script('request_js', 'SolicitudesAjax', [
+      'url' => admin_url('admin-ajax.php'),
+      'seguridad' => wp_create_nonce('seg')
+
+    ]);
+  } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_student_user')) {
+    wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('adminlte_css', plugins_url('admin/css/font-awesome/css/adminlte.min.css', __FILE__));
+    wp_enqueue_style('styles_css', plugins_url('admin/css/style.css', __FILE__));
+    wp_enqueue_style('asap_font', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+    wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Muli:300,700&display=swap");
+    wp_enqueue_style('icon_font', "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    wp_enqueue_style('cloudflare_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css");
+    wp_enqueue_style('datatables_css', "https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css");
+    wp_enqueue_style('custom_css', plugins_url('admin/css/view_dashboard_admin.css', __FILE__));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.4.1.min.js", array('jquery'));
+    wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('codejquery_js', "https://code.jquery.com/jquery-3.5.1.js", array('jquery'));
+    wp_enqueue_script('datatables1_js', "https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('datatables2_js', "https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", array('jquery'));
+    wp_enqueue_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", array('jquery'));
+    wp_enqueue_script('chart_js', "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
+    wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
+    wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/student.js', __FILE__), array('jquery'));
+    wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
+    wp_localize_script('request_js', 'SolicitudesAjax', [
+      'url' => admin_url('admin-ajax.php'),
+      'seguridad' => wp_create_nonce('seg')
+
+    ]);
+  } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_reserva_user')) {
+    wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('adminlte_css', plugins_url('admin/css/font-awesome/css/adminlte.min.css', __FILE__));
+    wp_enqueue_style('styles_css', plugins_url('admin/css/style.css', __FILE__));
+    wp_enqueue_style('asap_font', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+    wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Muli:300,700&display=swap");
+    wp_enqueue_style('icon_font', "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    wp_enqueue_style('cloudflare_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css");
+    wp_enqueue_style('datatables_css', "https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css");
+    wp_enqueue_style('custom_css', plugins_url('admin/css/view_dashboard_admin.css', __FILE__));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.4.1.min.js", array('jquery'));
+    wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('codejquery_js', "https://code.jquery.com/jquery-3.5.1.js", array('jquery'));
+    wp_enqueue_script('datatables1_js', "https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('datatables2_js', "https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js", array('jquery'));
+    wp_enqueue_script('jquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", array('jquery'));
+    wp_enqueue_script('bootstrap_js', "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", array('jquery'));
+    wp_enqueue_script('chart_js', "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js", array('jquery'));
+    wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
+    wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
+    wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
+    wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/reserva.js', __FILE__), array('jquery'));
     wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),

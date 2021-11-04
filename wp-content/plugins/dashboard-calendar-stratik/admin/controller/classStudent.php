@@ -1,92 +1,9 @@
 <?php
 
-/* Clase Principal del Plugin Para el Calendario. 
-class Calendar
-{
-
-    public function layoutCalendarUsers(){
-        $html = "<div class='mt-5'></div>
-
-        <div class='container'>
-          <div class='row'>
-            <div class='col msjs'>
-        ";
-        if(isset($_REQUEST['e'])){
-        $html .="<div class='alert alert-success alert-dismissible fade show text-center' role='alert'>
-                    <strong>Felicitaciones!</strong> El evento fue registrado correctamente.
-                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                    </button>
-                </div>";
-        }
-        if(isset($_REQUEST['ea'])){
-        $html.="<div class='alert alert-success alert-dismissible fade show text-center' role='alert'>
-                        <strong>Felicitaciones!</strong> El evento fue actualizado correctamente.
-                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                        </button>
-                    </div>";
-                    }
-        else
-        {
-        $html.="<div class='alert alert-danger alert-dismissible fade show text-center' role='alert' style='display: none;'>
-                        <strong>Felicitaciones!</strong> El evento fue borrado correctamente.
-                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                        </button>
-                    </div>";
-        }
-        $html .= "                     
-            </div>
-          </div>      
-          <div class='row'>
-            <div class='col-md-12 mb-3'>
-              <h3 class='text-center' id='title'>Calendario de Prueba Barre MX</h3>
-            </div>
-          </div>
-        </div>
-      
-      
-      
-        <div id='calendar'></div>
-      ";
-
-      $html.="<!-- #dialog is the id of a DIV defined in the code below -->
-                <a href='#exampleModal' name='modal'>Simple Modal Window</a>
-                
-                <div id='boxes'>
-                
-                  
-                  <!-- #customize your modal window here -->
-                
-                  <div id='dialog' class='window'>
-                    <b>Testing of Modal Window</b> | 
-                    
-                    <!-- close button is defined as close class -->
-                    <a href='#' class='close'>Close it</a>
-                
-                  </div>
-                
-                  
-                  <!-- Do not remove div#mask, because you'll need it to fill the whole screen -->	
-                  <div id='mask'></div>
-                </div>";
-
-        return $html;
-
-
-    }
-
-}
-
-*/
-
-
-
 /* Clase Principal del Plugin Para el Coaches. */
-class Calendar
+class Student
 {
-  public function layoutCalendarUsers()
+  public function formStudent()
   {
 
     global $wpdb;
@@ -136,7 +53,7 @@ class Calendar
                 <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-people lead mr-2'></i>
                     Usuarios</a>
 
-                <a href='http://localhost/wordpress/dashboard-students/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
+                <a href='http://localhost/wordpress/dashboard-coach/' class='d-block text-light p-3 border-0'><i class='icon ion-md-contact lead mr-2'></i>
                     Coaches</a>
 
                 <a href='#' class='d-block text-light p-3 border-0'><i class='icon ion-md-stats lead mr-2'></i>
@@ -191,15 +108,9 @@ class Calendar
               <section class='bg-light py-3'>
                   <div class='container'>
                       <div class='row'>
-                          <div class='col-lg-9 col-md-8 col-xl-12'>
-                            <h2 class='font-weight-bold mb-0'>Calendario BarreMX</h2>
+                          <div class='col-lg-9 col-md-8'>
+                            <h2 class='font-weight-bold mb-0'>Estudiantes</h2>
                             
-                            <!-- Button trigger modal -->
-                            <div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end'>
-                              <button type='button' class='btn btn-primary btn-lg xl-12 d-flex justify-content-end' data-toggle='modal' data-target='#evento'>
-                                Launch
-                              </button>
-                            </div>
                           </div>
                           
                       </div>
@@ -208,40 +119,88 @@ class Calendar
 
               <section class='bg-mix py-3'>
               <div class = 'container'>
-              
+              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end '><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Estudiante </button></div>
                 <div class='table-responsive'>
-
-                  <div class='container'>
-                      <div id='calendario' width='100' height='100'>
-                          Calendario
-                      </div>
-
-                  </div>
-                    
-                    
+                    <table id='students' class='table table-striped' style='width:100%'>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo Electronico</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Tipo de Estudiante</th>
                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>02/07/1989</td>
+                <td>Presencial</td>
+               
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>02/02/1998</td>
+                <td>Online</td>
+                
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>02/02/1991</td>
+                <td>Online/Presencial</td>
+                
+            </tr>
+
+        </tbody>
+        
+    </table>
+                    
                 </div>
-                
-                  <!-- Modal -->
-                      <div class='modal fade' id='evento' tabindex='-1' role='dialog' aria-labelledby='modelTitleId' aria-hidden='true'>
-                        <div class='modal-dialog' role='document'>
-                          <div class='modal-content'>
-                            <div class='modal-header'>
-                              <h5 class='modal-title'>Modal title</h5>
-                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                  <span aria-hidden='true'>&times;</span>
-                                </button>
+                </div>
+                <!-- Modal -->
+                  <div class='modal fade' id='nuevoStudent' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                      <div class='modal-content'>
+                        <div class='modal-header'>
+                          <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                          <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                          </button>
+                        </div>
+                        <div class='modal-body'>
+                          <form id='formStudent'>
+                            <div class='form-group'>
+                              <label for='dash_student_nombre'>Nombre</label>
+                              <input type='text' class='form-control' id='dash_student_nombre'>
+                              <label for='dash_student_apellido'>Apellido</label>
+                              <input type='text' class='form-control' id='dash_student_apellido'>
+                              <label for='dash_student_correo'>Correo Electronico</label>
+                              <input type='email' class='form-control' id='dash_student_correo'>
+                              <label for='dash_student_fecha_nacimiento'>Fecha de Nacimiento</label>
+                              <input type='date' class='form-control' id='dash_student_fecha_nacimiento'>
+                              <label for='dash_student_tipo_estudiante'>Tipo de Estudiante</label><br>
+                              <input type='text' class='form-control' id='dash_student_tipo_estudiante'>
+                              
                             </div>
-                            <div class='modal-body'>
-                              Body
-                            </div>
-                            <div class='modal-footer'>
-                              <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
-                              <button type='button' class='btn btn-primary'>Save</button>
-                            </div>
-                          </div>
+                            
+                            
+                            
+                          </form>
+                        </div>
+                        <div class='modal-footer'>
+                          <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                          <div class='row text-center'><div class='col-lg-12'><button type='button' class='btn btn-lg mr-4' id='sendInfoStudent'>Enviar</button></div></div>
                         </div>
                       </div>
+                    </div>
+                  </div>
               </section>
 
               
