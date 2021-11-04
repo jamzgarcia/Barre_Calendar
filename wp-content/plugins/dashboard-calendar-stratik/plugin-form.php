@@ -50,23 +50,23 @@ function EnablePluginForm()
   );";
   $createsede = dbDelta($sqlsede, true);
 
-  $sqlClass = "CREATE TABLE IF NOT EXISTS wp_dash_class( dash_class_id INT(11) NOT NULL AUTO_INCREMENT, 
+  $sqlClass = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}dash_class( dash_class_id INT(11) NOT NULL AUTO_INCREMENT, 
   dash_student_id INT(11) NOT NULL, 
   dash_coach_id INT(11) NOT NULL, 
   dash_sede_id INT(11) NOT NULL, 
   id_user BIGINT(20) unsigned NOT NULL, 
   dash_class_date DATE NOT NULL, 
   PRIMARY KEY (dash_class_id), 
-  FOREIGN KEY (dash_student_id) REFERENCES wp_dash_student(dash_student_id) ON DELETE CASCADE, 
-  FOREIGN KEY (dash_coach_id) REFERENCES wp_dash_coach(dash_coach_id) ON DELETE CASCADE, 
-  FOREIGN KEY (dash_sede_id) REFERENCES wp_dash_sede(dash_sede_id) ON DELETE CASCADE, 
-  FOREIGN KEY (id_user) REFERENCES wp_users(ID) ON DELETE CASCADE)";
+  FOREIGN KEY (dash_student_id) REFERENCES {$wpdb->prefix}dash_student(dash_student_id) ON DELETE CASCADE, 
+  FOREIGN KEY (dash_coach_id) REFERENCES {$wpdb->prefix}dash_coach(dash_coach_id) ON DELETE CASCADE, 
+  FOREIGN KEY (dash_sede_id) REFERENCES {$wpdb->prefix}dash_sede(dash_sede_id) ON DELETE CASCADE, 
+  FOREIGN KEY (id_user) REFERENCES {$wpdb->prefix}users(ID) ON DELETE CASCADE)";
   $createClass = dbDelta($sqlClass, true);
 
 
 
 
-  $sqlCalendar = "CREATE TABLE IF NOT EXISTS wp_dash_calendar(
+  $sqlCalendar = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}dash_calendar(
       dash_calendar_id INT(11) NOT NULL AUTO_INCREMENT,
       dash_class_id INT(11) NOT NULL,
       dash_calendar_color_evento VARCHAR(20) NULL,
@@ -74,13 +74,13 @@ function EnablePluginForm()
       dash_calendar_fecha_fin VARCHAR(20) NULL,
       PRIMARY KEY (dash_calendar_id),
       FOREIGN KEY (dash_class_id) 
-          REFERENCES wp_dash_class(dash_class_id) ON DELETE CASCADE
+          REFERENCES {$wpdb->prefix}dash_class(dash_class_id) ON DELETE CASCADE
   );";
   $createCalendar = dbDelta($sqlCalendar, true);
 
 
 
-  $sqlreserva = "CREATE TABLE IF NOT EXISTS wp_dash_reserva(
+  $sqlreserva = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}dash_reserva(
   dash_reserva_id INT(11) NOT NULL AUTO_INCREMENT,
   dash_student_id INT(11) NOT NULL,
   dash_coach_id INT(11) NOT NULL,
@@ -89,13 +89,13 @@ function EnablePluginForm()
   dash_reserva_date DATE NOT NULL,
   PRIMARY KEY (dash_reserva_id),
   FOREIGN KEY (dash_student_id) 
-      REFERENCES wp_dash_student(dash_student_id) ON DELETE CASCADE,
+      REFERENCES {$wpdb->prefix}dash_student(dash_student_id) ON DELETE CASCADE,
   FOREIGN KEY (dash_coach_id) 
-      REFERENCES wp_dash_coach(dash_coach_id) ON DELETE CASCADE,
+      REFERENCES {$wpdb->prefix}dash_coach(dash_coach_id) ON DELETE CASCADE,
   FOREIGN KEY (dash_sede_id) 
-      REFERENCES wp_dash_sede(dash_sede_id) ON DELETE CASCADE,
+      REFERENCES {$wpdb->prefix}dash_sede(dash_sede_id) ON DELETE CASCADE,
   FOREIGN KEY (id_user) 
-      REFERENCES wp_users(ID) ON DELETE CASCADE   
+      REFERENCES {$wpdb->prefix}users(ID) ON DELETE CASCADE   
 );";
   $createClass = dbDelta($sqlreserva, true);
 }
