@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 right: 'dayGridMonth,timeGridWeek,listWeek'
             },
 
-            dateClick:function(info){
-              $("#evento").modal("show");
+            dateClick: function(info) {
+                $("#evento").modal("show");
 
             }
         });

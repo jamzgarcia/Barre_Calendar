@@ -408,8 +408,8 @@ function add_styles_page()
     wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
     wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
-    wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
-    wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
+    // wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
+    // wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
     wp_enqueue_script('admin_page', plugins_url('admin/js/calendario.js', __FILE__), array('jquery'));
     wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
