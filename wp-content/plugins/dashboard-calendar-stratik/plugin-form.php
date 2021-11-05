@@ -235,6 +235,18 @@ function viewSedes()
 
 add_shortcode("view_sede_user", "viewSedes");
 
+
+/* ShortCode For Sedes */
+
+function viewClase()
+{
+  $tapeteData = new Sede();
+  $html = $tapeteData->formSede();
+  return $html;
+}
+
+add_shortcode("view_sede_user", "viewSedes");
+
 function insertStudent()
 {
   global $wpdb;
