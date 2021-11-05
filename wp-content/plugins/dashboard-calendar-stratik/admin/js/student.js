@@ -68,7 +68,7 @@ $(document).ready(function() {
                   showConfirmButton: false,
                   timer: 1500 
                 })
-               // location.reload();
+                location.reload();
                 console.log("Actualizar informacion  del estudiante oki!!");
             });
         }
