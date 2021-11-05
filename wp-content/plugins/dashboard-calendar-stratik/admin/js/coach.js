@@ -23,29 +23,29 @@ $(document).ready(function() {
 $("#sendInfoCoach").click(function () {
         console.log("dio clic para update");
         alert("Actualizar Datos Coach");
-        var nameCoach = $("#dash_coach_nombre").val();
-        var lastNameCoach = $("#dash_coach_apellido").val();
+        var dash_coach_nombre = $("#dash_coach_nombre").val();
+        var dash_coach_apellido = $("#dash_coach_apellido").val();
         var dash_coach_correo = $("#dash_coach_correo").val();
-        var dateCoach = $("#dash_coach_fecha_nacimiento").val();
+        var dash_coach_fecha_nacimiento = $("#dash_coach_fecha_nacimiento").val();
         
-        console.log(nameCoach);
-        console.log(lastNameCoach);
+        console.log(dash_coach_nombre);
+        console.log(dash_coach_apellido);
         console.log(dash_coach_correo);
-        console.log(dateCoach);
+        console.log(dash_coach_fecha_nacimiento);
         
         
         var validForm = validateForms([
-            { 'data': nameCoach, 'item': 'nameCoach', 'type': 'text', 'obligatory': true },
-            { 'data': lastNameCoach, 'item': 'lastNameCoach', 'type': 'text', 'obligatory': true },
+            { 'data': dash_coach_nombre, 'item': 'dash_coach_nombre', 'type': 'text', 'obligatory': true },
+            { 'data': dash_coach_apellido, 'item': 'dash_coach_apellido', 'type': 'text', 'obligatory': true },
             { 'data': dash_coach_correo, 'item': 'dash_coach_correo', 'type': 'email', 'obligatory': true },
-            { 'data': dateCoach, 'item': 'dateCoach', 'type': 'date', 'obligatory': true }
+            { 'data': dash_coach_fecha_nacimiento, 'item': 'dash_coach_fecha_nacimiento', 'type': 'date', 'obligatory': true }
             
             
         ]);
         if (validForm["validate"]) {
             $("#sendInfoCoach").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
             $("#sendInfoCoach").attr('disabled', true);
-            actionEntry = insertCoach(nameCoach,lastNameCoach,dash_coach_correo,dateCoach); 
+            actionEntry = insertCoach(dash_coach_nombre,dash_coach_apellido,dash_coach_correo,dash_coach_fecha_nacimiento); 
             $.when(actionEntry).done(function (respAction) {
                 console.log(respAction);
             }).fail(function (respFail) {
@@ -64,7 +64,7 @@ $("#sendInfoCoach").click(function () {
                   showConfirmButton: false,
                   timer: 1500 
                 })
-                location.reload();
+                 location.reload();
                 console.log("Actualizar informacion  del coach oki!!");
             });
         }

@@ -24,6 +24,11 @@ class Coach
     //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
     $id_user = $current_user->ID;
 
+    $table_coach = "{$wpdb->prefix}dash_coahc";
+		$sql = "SELECT dash_coach_nombre, dash_coach_apellido, dash_coach_correo,dash_coach_fecha_nacimiento 
+            from  {$wpdb->prefix}dash_coach ";
+		$dataCoach = $wpdb->get_results($sql,ARRAY_A); 
+
     $html = "<!doctype html>
       <html lang='en'>
 
@@ -120,51 +125,47 @@ class Coach
                     <section class='bg-mix py-3'>
                     <div class = 'container'>
                     <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Coach </button></div>
-                      <div class='table-responsive'>
+                      ";
+                   $html .= "<div class='table-responsive'>
                           <table id='coaches' class='table table-striped' style='width:100%'>
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                  </tr>
-                  <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                  </tr>
-                  <tr>
-                      <td>Ashton Cox</td>
-                      <td>Junior Technical Author</td>
-                      <td>San Francisco</td>
-                      <td>66</td>
-                      <td>2009/01/12</td>
-                      <td>$86,000</td>
-                  </tr>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Correo</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>";              
+              $var = 1;
+              foreach ($dataCoach as $key => $value) {
+                $html .= "<tr><td>".$var."</td>";
 
-              </tbody>
-              
-          </table>
-                          
-                      </div>
-                      </div>
-                      <!-- Modal -->
+                // Nombre coach
+                
+                $html .= "<td>".$value['dash_coach_nombre']."</td>";
+
+                // Apellido coach               
+                $html .= "<td>".$value['dash_coach_apellido']."</td>";          
+
+                // correo electronico coach
+                $html .= "<td>".$value['dash_coach_correo']."</td>";
+
+                // fecha de nacimiento coach
+                $html .= "<td>".$value['dash_coach_fecha_nacimiento']."</td>";
+
+                $html .= "<td>'<button type='button' class='btn btn-info'>Editar</button><br><button type='button' class='btn btn-danger'>Eliminar</button>'</td>";
+
+                $html .= "</tr>";
+
+                 $var++;
+            }
+
+            $html .= "</table></div></div></div>";
+
+              $html .= "<!-- Modal -->
                         <div class='modal fade' id='nuevoCoach' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                           <div class='modal-dialog'>
                             <div class='modal-content'>
