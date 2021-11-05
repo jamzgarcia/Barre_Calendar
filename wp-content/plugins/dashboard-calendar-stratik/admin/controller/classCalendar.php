@@ -5,11 +5,9 @@
 class Calendar
 {
 
-    public function iframeCaledar(){
-      $html = "<iframe src='https://jamzpcs.com/BarreCalendar/' width='100%' height='720' ></iframe>";
-        return $html;
-
-    }
-
+  public function iframeCaledar()
+  {
+    $html = "<iframe src='https://jamzpcs.com/BarreCalendar/' width='100%' height='720' ></iframe>";
+    return $html;
+  }
 }
-
