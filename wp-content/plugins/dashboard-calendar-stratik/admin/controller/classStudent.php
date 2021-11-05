@@ -24,6 +24,15 @@ class Student
     //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
     $id_user = $current_user->ID;
 
+    $table_student = "{$wpdb->prefix}dash_student ";
+		$sqlStudent = "SELECT dash_student_nombre, 
+                  dash_student_apellido, 
+                  dash_student_correo,
+                  dash_student_fecha_nacimiento, 
+                  dash_student_tipo_estudiante 
+            from  {$wpdb->prefix}dash_student";
+		$dataStudent = $wpdb->get_results($sqlStudent,ARRAY_A);
+
     $html = "<!doctype html>
 <html lang='en'>
 
@@ -119,57 +128,58 @@ class Student
 
               <section class='bg-mix py-3'>
               <div class = 'container'>
-              <div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end '><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Estudiante </button></div>
+              ";
+
+
+
+              $html .= "<div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end '><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevoStudent'>Nuevo Estudiante </button></div>
                 <div class='table-responsive'>
                     <table id='students' class='table table-striped' style='width:100%'>
         <thead>
+
             <tr>
+                <th>#</th>    
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Correo Electronico</th>
                 <th>Fecha de Nacimiento</th>
-                <th>Tipo de Estudiante</th>
-                
+                <th>Tipo de Estudiante</th>                
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>02/07/1989</td>
-                <td>Presencial</td>
-               
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>02/02/1998</td>
-                <td>Online</td>
-                
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>02/02/1991</td>
-                <td>Online/Presencial</td>
-                
-            </tr>
+        ";
 
-        </tbody>
-        
-    </table>
-                    
-                </div>
-                </div>
-                <!-- Modal -->
-                  <div class='modal fade' id='nuevoStudent' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+        $var = 1;
+        foreach ($dataStudent as $key => $value) {
+          //id del estudiante
+          
+          $html .= "<tr><td>".$var."</td>";          
+
+          // nombre del estudiante
+          $html .= "<td>".$value['dash_student_nombre']."</td>";
+          
+          // apellido del estudiante      
+          $html .= "<td>".$value['dash_student_apellido']."</td>";
+
+          // correo del estudiante          
+          $html .= "<td>".$value['dash_student_correo']."</td>";          
+
+          // fecha de nacimiento del estudiante
+          $html .= "<td>".$value['dash_student_fecha_nacimiento']."</td>";      
+          
+          // tipo de estudiante
+          $html .= "<td>".$value['dash_student_tipo_estudiante']."</td></tr>";
+          $var++;
+      }
+
+      $html .= "</table></div></div></div>";
+
+        $html .= "<!-- Modal -->
+                  <div class='modal fade' id='nuevoStudent' tabindex='-1' aria-labelledby='nuevoStudent' aria-hidden='true'>
                     <div class='modal-dialog'>
                       <div class='modal-content'>
                         <div class='modal-header'>
-                          <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                          <h5 class='modal-title' id='nuevoStudent'>Modal title</h5>
                           <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                           </button>
@@ -189,9 +199,6 @@ class Student
                               <input type='text' class='form-control' id='dash_student_tipo_estudiante'>
                               
                             </div>
-                            
-                            
-                            
                           </form>
                         </div>
                         <div class='modal-footer'>

@@ -237,11 +237,11 @@ function insertStudent()
       $dataStudent = $_POST;
       $tableStudent = "{$wpdb->prefix}dash_student";
       $response = array();
-      $names = $dataStudent["nameStudent"];
-      $lastName = $dataStudent["lastNameStudent"];
-      $dashStudentCorreo = $dataStudent["dashStudentCorreo"];
-      $dateStudent = $dataStudent["dateStudent"];
-      $typeStudent = $dataStudent["typeStudent"];
+      $names = $dataStudent["dash_student_nombre"];
+      $lastName = $dataStudent["dash_student_apellido"];
+      $dashStudentCorreo = $dataStudent["dash_student_correo"];
+      $dateStudent = $dataStudent["dash_student_fecha_nacimiento"];
+      $typeStudent = $dataStudent["dash_student_tipo_estudiante"];
       $dataInsert = array("dash_student_nombre" => $names, "dash_student_apellido" => $lastName, "dash_student_correo" => $dashStudentCorreo, "dash_student_fecha_nacimiento" => $dateStudent, "dash_student_tipo_estudiante" => $typeStudent);
       // var_dump($dataInsert); die;
       $result = $wpdb->insert($tableStudent, $dataInsert);
@@ -262,7 +262,13 @@ function insertStudent()
 
 add_action('wp_ajax_insertStudent', 'insertStudent');
 
-
+/*
+Funcion para insertar uno o varios Coach en la base de datos OK
+Author: Jimmy Cantor
+Email: jamzgarcia16@gmail.com
+Full Stack Developer 
+www.jamzpcs.com 
+*/
 function insertCoach()
 {
   global $wpdb;

@@ -19,36 +19,37 @@ $(document).ready(function() {
                      "sProcessing":"Procesando...",
                 }
         });
+
         $("#sendInfoStudent").off("click");
-$("#sendInfoStudent").click(function () {
+        $("#sendInfoStudent").click(function () {
         console.log("dio clic para update");
         alert("Actualizar Datos Estudiante");
-        var nameStudent = $("#dash_student_nombre").val();
-        var lastNameStudent = $("#dash_student_apellido").val();
-        var dashStudentCorreo = $("#dash_student_correo").val();
-        var dateStudent = $("#dash_student_fecha_nacimiento").val();
-        var typeStudent = $("#dash_student_tipo_estudiante").val();
+        var dash_student_nombre = $("#dash_student_nombre").val();
+        var dash_student_apellido = $("#dash_student_apellido").val();
+        var dash_student_correo = $("#dash_student_correo").val();
+        var dash_student_fecha_nacimiento = $("#dash_student_fecha_nacimiento").val();
+        var dash_student_tipo_estudiante = $("#dash_student_tipo_estudiante").val();
         
-        console.log(nameStudent);
-        console.log(lastNameStudent);
-        console.log(dashStudentCorreo);
-        console.log(dateStudent);
-        console.log(typeStudent);
+        console.log(dash_student_nombre);
+        console.log(dash_student_apellido);
+        console.log(dash_student_correo);
+        console.log(dash_student_fecha_nacimiento);
+        console.log(dash_student_tipo_estudiante);
         
         
         var validForm = validateForms([
-            { 'data': nameStudent, 'item': 'nameStudent', 'type': 'text', 'obligatory': true },
-            { 'data': lastNameStudent, 'item': 'lastNameStudent', 'type': 'text', 'obligatory': true },
-            { 'data': dashStudentCorreo, 'item': 'dashStudentCorreo', 'type': 'email', 'obligatory': true },
-            { 'data': dateStudent, 'item': 'dateStudent', 'type': 'date', 'obligatory': true },
-            { 'data': typeStudent, 'item': 'typeStudent', 'type': 'text', 'obligatory': true }
+            { 'data': dash_student_nombre, 'item': 'dash_student_nombre', 'type': 'text', 'obligatory': true },
+            { 'data': dash_student_apellido, 'item': 'dash_student_apellido', 'type': 'text', 'obligatory': true },
+            { 'data': dash_student_correo, 'item': 'dash_student_correo', 'type': 'email', 'obligatory': true },
+            { 'data': dash_student_fecha_nacimiento, 'item': 'dash_student_fecha_nacimiento', 'type': 'date', 'obligatory': true },
+            { 'data': dash_student_tipo_estudiante, 'item': 'dash_student_tipo_estudiante', 'type': 'text', 'obligatory': true }
             
             
         ]);
         if (validForm["validate"]) {
             $("#sendInfoStudent").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
             $("#sendInfoStudent").attr('disabled', true);
-            actionEntry = insertStudent(nameStudent,lastNameStudent,dashStudentCorreo,dateStudent, typeStudent); 
+            actionEntry = insertStudent(dash_student_nombre,dash_student_apellido,dash_student_correo,dash_student_fecha_nacimiento, dash_student_tipo_estudiante); 
             $.when(actionEntry).done(function (respAction) {
                 console.log(respAction);
             }).fail(function (respFail) {
@@ -67,7 +68,7 @@ $("#sendInfoStudent").click(function () {
                   showConfirmButton: false,
                   timer: 1500 
                 })
-                location.reload();
+               // location.reload();
                 console.log("Actualizar informacion  del estudiante oki!!");
             });
         }

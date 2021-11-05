@@ -108,6 +108,15 @@ function insertCoach(dash_coach_nombre,dash_coach_apellido,dash_coach_correo,das
     });
 }
 
+function insertStudent(dash_student_nombre,dash_student_apellido,dash_student_correo,dash_student_fecha_nacimiento, dash_student_tipo_estudiante) {
+    return $.ajax({
+        type: "POST",
+        url: url_dest,
+        dataType: 'json',
+        data: { action: 'insertStudent', nonce: url_secure,dash_student_nombre,dash_student_apellido,dash_student_correo,dash_student_fecha_nacimiento, dash_student_tipo_estudiante}
+    });
+}
+
 
 
 function insertInspectors(names, last_names, document, mobile, email, company) {
