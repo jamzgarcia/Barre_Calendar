@@ -1,11 +1,11 @@
 <?php
 
 /* Clase Principal del Plugin Para el Coaches. */
-class Tapete
+class Sede
 {
-  public function formTapete()
+  public function formSede()
   {
-    $html = "<h1>hola tapetes</h1>";
+    $html = "<h1>hola Sede</h1>";
     return $html;
   }
 }
