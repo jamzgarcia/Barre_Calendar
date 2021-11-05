@@ -229,7 +229,7 @@ function insertStudent()
   $wpdb->show_errors();
   try {
     if (isset($_POST)) {
-      print_r($_POST); //debug
+    //  print_r($_POST); //debug
 
       $current_user = wp_get_current_user();
 
@@ -281,7 +281,7 @@ function insertCoach()
   $wpdb->show_errors();
   try {
     if (isset($_POST)) {
-      print_r($_POST); //debug
+      // print_r($_POST); //debug
 
       $current_user = wp_get_current_user();
 
@@ -301,12 +301,12 @@ function insertCoach()
       $dataCoach = $_POST;
       $tableCoach = "{$wpdb->prefix}dash_coach";
       $response = array();
-      $names = $dataCoach["nameCoach"];
-      $lastName = $dataCoach["lastNameCoach"];
+      $dash_coach_nombre = $dataCoach["dash_coach_nombre"];
+      $dash_coach_apellido = $dataCoach["dash_coach_apellido"];
       $dash_coach_correo = $dataCoach["dash_coach_correo"];
-      $dateCoach = $dataCoach["dateCoach"];
-      $dataInsert = array("dash_coach_nombre" => $names, "dash_coach_apellido" => $lastName, "dash_coach_correo" => $dash_coach_correo, "dash_coach_fecha_nacimiento" => $dateCoach);
-      // var_dump($dataInsert); die;
+      $dash_coach_fecha_nacimiento = $dataCoach["dash_coach_fecha_nacimiento"];
+      $dataInsert = array("dash_coach_nombre" => $dash_coach_nombre, "dash_coach_apellido" => $dash_coach_apellido, "dash_coach_correo" => $dash_coach_correo, "dash_coach_fecha_nacimiento" => $dash_coach_fecha_nacimiento);
+     // var_dump($dataInsert); die;
       $result = $wpdb->insert($tableCoach, $dataInsert);
       if ($result == 1) {
         $response = json_encode(array("code" => 200, "message" => "coach creado Exitosamente", "result" => $result));
