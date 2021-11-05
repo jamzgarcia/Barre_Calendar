@@ -229,7 +229,7 @@ function insertStudent()
   $wpdb->show_errors();
   try {
     if (isset($_POST)) {
-    //  print_r($_POST); //debug
+      //  print_r($_POST); //debug
 
       $current_user = wp_get_current_user();
 
@@ -306,7 +306,7 @@ function insertCoach()
       $dash_coach_correo = $dataCoach["dash_coach_correo"];
       $dash_coach_fecha_nacimiento = $dataCoach["dash_coach_fecha_nacimiento"];
       $dataInsert = array("dash_coach_nombre" => $dash_coach_nombre, "dash_coach_apellido" => $dash_coach_apellido, "dash_coach_correo" => $dash_coach_correo, "dash_coach_fecha_nacimiento" => $dash_coach_fecha_nacimiento);
-     // var_dump($dataInsert); die;
+      // var_dump($dataInsert); die;
       $result = $wpdb->insert($tableCoach, $dataInsert);
       if ($result == 1) {
         $response = json_encode(array("code" => 200, "message" => "coach creado Exitosamente", "result" => $result));
@@ -563,7 +563,7 @@ function add_styles_page()
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
-    wp_enqueue_script('admin_page', plugins_url('admin/js/reserva.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/tapete.js', __FILE__), array('jquery'));
     wp_enqueue_script('chart_page', plugins_url('admin/js/chart.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),
