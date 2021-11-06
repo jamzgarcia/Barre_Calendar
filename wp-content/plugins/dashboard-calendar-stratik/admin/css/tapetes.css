@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.contenedor {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.titulo {
+  font-size: 24px;
+  padding: 20px 0;
+}
+
+.contenedor-1 {
+  display: flex;
+  justify-content: center;
+}
+
+.contenedor-2 {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.card {
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+}
+
+#coach {
+  margin-right: 320px;
+}
+
+#tapete7 {
+  margin-right: 100px;
+}
+
+.card .textos {
+  height: 100%;
+}
+
+.card img:hover {
+  transform: scale(1.15);
+}
+
+.banner {
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.banner ul {
+  list-style: none;
+}
+
+.banner ul li {
+  margin: 15px;
+  font-weight: bold;
+}
+
+.banner .boton {
+  background: #ffd600;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 100px;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 700px) {
+}
+
+@media screen and (max-width: 600px) {
+}

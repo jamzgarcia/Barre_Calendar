@@ -5,7 +5,103 @@ class Tapete
 {
   public function formTapete()
   {
-    $html = "<h1>hola tapetes</h1>";
+    $html = "<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='stylesheet' href='estilos.css'>
+  <title>Flexbox vs CSS Grid</title>
+</head>
+
+<body>
+  <div class='contenedor'>
+    <dv class='contenedor-1'>
+
+      <div class='card'>
+        <img src='/wp-content/plugins/dashboard-calendar-stratik/admin/images/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteA' />
+
+      </div>
+
+      <div class='card'>
+        <img src=' ./img/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteB' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src=' ./img/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteC' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src=' ./img/Tapetes-Disponible.jpg' width='80' height='150' id='tapete' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src=' ./img/Tapetes-Disponible.jpg' width='80' height='150' id='tapete' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+    </dv>
+
+    <dv class='contenedor-2'>
+
+      <div class='card1' id='coach'>
+
+        <img src='./img/Tapetes-Coach.jpg' width='150' height='80' />
+
+      </div>
+
+      <div class='card' id='tapete' id='tapete7'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+    </dv>
+
+    <dv class='contenedor-1'>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+      <div class='card' id='tapete'>
+        <img src='./img/Tapetes-Disponible.jpg' width='80' height='150' />
+      </div>
+
+    </dv>
+
+  </div>
+  
+</body>
+
+</html>";
     return $html;
   }
 }

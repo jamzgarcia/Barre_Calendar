@@ -1,1 +1,1 @@
-console.log("Entramos a class tapete");
+console.log("Entramos a class tapetesssssss")
