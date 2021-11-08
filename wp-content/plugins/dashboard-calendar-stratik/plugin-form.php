@@ -356,6 +356,59 @@ function insertCoach()
 
 add_action('wp_ajax_insertCoach', 'insertCoach');
 
+/*
+Funcion para insertar Sedes
+
+*/
+function insertSede()
+{
+  global $wpdb;
+  $wpdb->show_errors();
+  try {
+    if (isset($_POST)) {
+      // print_r($_POST); //debug
+
+      $current_user = wp_get_current_user();
+
+      /*
+             * @example Safe usage: $current_user = wp_get_current_user();
+             * if ( ! ( $current_user instanceof WP_User ) ) {
+             *     return;
+             * }
+             */
+      //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+      //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+      //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+      //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+      //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+      //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+
+      $dataSede = $_POST;
+      $tableSede = "{$wpdb->prefix}dash_sede";
+      $response = array();
+      $dash_sede_nombre = $dataSede["dash_sede_nombre"];
+      $dash_sede_direccion = $dataSede["dash_sede_direccion"];
+      $dash_sede_telefono = $dataSede["dash_sede_telefono"];
+      $dataInsert = array("dash_sede_nombre" => $dash_sede_nombre, "dash_sede_direccion" => $dash_sede_direccion, "dash_sede_telefono" => $dash_sede_telefono);
+      // var_dump($dataInsert); die;
+      $result = $wpdb->insert($tableSede, $dataInsert);
+      if ($result == 1) {
+        $response = json_encode(array("code" => 200, "message" => "sede creada Exitosamente", "result" => $result));
+      } else {
+        $response = json_encode(array("code" => 500, "message" => "Sede no pudo ser creada", "result" => $result));
+      }
+    } else {
+      $response = json_encode(array("code" => 400, "message" => "Los datos necesarios están incompletos"));
+    }
+    echo $response;
+  } catch (Exception $e) {
+    echo json_encode(array("code" => 500, "error" => $e));
+  }
+  wp_die();
+}
+
+add_action('wp_ajax_insertSede', 'insertSede');
+
 
 function add_styles_page()
 {
@@ -632,7 +685,7 @@ function add_styles_page()
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
-    wp_enqueue_script('admin_page', plugins_url('admin/js/tapete.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/sede.js', __FILE__), array('jquery'));
 
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),

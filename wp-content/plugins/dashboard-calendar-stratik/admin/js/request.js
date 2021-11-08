@@ -117,6 +117,15 @@ function insertStudent(dash_student_nombre,dash_student_apellido,dash_student_co
     });
 }
 
+function insertSede(dash_sede_nombre,dash_sede_direccion,dash_sede_telefono) {
+    return $.ajax({
+        type: "POST",
+        url: url_dest,
+        dataType: 'json',
+        data: { action: 'insertSede', nonce: url_secure,dash_sede_nombre,dash_sede_direccion,dash_sede_telefono}
+    });
+}
+
 
 
 function insertInspectors(names, last_names, document, mobile, email, company) {
