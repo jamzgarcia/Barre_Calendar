@@ -129,7 +129,7 @@ class Sede
                     <div class='modal-dialog'>
                       <div class='modal-content'>
                         <div class='modal-header'>
-                          <h5 class='modal-title' id='nuevoStudent'>Nueva Sede</h5>
+                          <h5 class='modal-title' id='nuevoSede'>Nueva Sede</h5>
                           <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                           </button>
@@ -137,11 +137,11 @@ class Sede
                         <div class='modal-body'>
                           <form id='formSede'>
                             <div class='form-group'>
-                              <label for='dash_student_nombre'>Nombre de la sede</label>
+                              <label for='dash_sede_nombre'>Nombre de la sede</label>
                               <input type='text' class='form-control' id='dash_sede_nombre'>
-                              <label for='dash_student_apellido'>Direccion de la Sede</label>
+                              <label for='dash_sede_direccion'>Direccion de la Sede</label>
                               <input type='text' class='form-control' id='dash_sede_direccion'>
-                              <label for='dash_student_correo'>Telefono de la sede</label>
+                              <label for='dash_sede_telefono'>Telefono de la sede</label>
                               <input type='number' class='form-control' id='dash_sede_telefono'>
                             </div>
                           </form>

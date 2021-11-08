@@ -126,6 +126,14 @@ function insertSede(dash_sede_nombre,dash_sede_direccion,dash_sede_telefono) {
     });
 }
 
+function insertClase(dash_student_id,dash_coach_id,dash_sede_id,dash_class_date) {
+    return $.ajax({
+        type: "POST",
+        url: url_dest,
+        dataType: 'json',
+        data: { action: 'insertSede', nonce: url_secure,dash_student_id,dash_coach_id,dash_sede_id,dash_class_date}
+    });
+}
 
 
 function insertInspectors(names, last_names, document, mobile, email, company) {

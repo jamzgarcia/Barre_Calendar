@@ -409,6 +409,60 @@ function insertSede()
 
 add_action('wp_ajax_insertSede', 'insertSede');
 
+/*
+Funcion para insertar Clases
+
+*/
+function insertClase()
+{
+  global $wpdb;
+  $wpdb->show_errors();
+  try {
+    if (isset($_POST)) {
+      // print_r($_POST); //debug
+
+      $current_user = wp_get_current_user();
+
+      /*
+             * @example Safe usage: $current_user = wp_get_current_user();
+             * if ( ! ( $current_user instanceof WP_User ) ) {
+             *     return;
+             * }
+             */
+      //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+      //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+      //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+      //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+      //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+      //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+
+      $dataClase = $_POST;
+      $tableClase = "{$wpdb->prefix}dash_class";
+      $response = array();
+      $dash_student_id = $dataClase["dash_student_id"];
+      $dash_coach_id = $dataClase["dash_coach_id"];
+      $dash_sede_id = $dataClase["dash_sede_id"];
+      $dash_class_date = $dataClase["dash_class_date"];
+      $dataInsert = array("dash_student_id" => $dash_student_id, "dash_coach_id" => $dash_coach_id, "dash_sede_id" => $dash_sede_id, "dash_class_date" => $dash_class_date);
+      // var_dump($dataInsert); die;
+      $result = $wpdb->insert($tableClase, $dataInsert);
+      if ($result == 1) {
+        $response = json_encode(array("code" => 200, "message" => "clase creada Exitosamente", "result" => $result));
+      } else {
+        $response = json_encode(array("code" => 500, "message" => "clase no pudo ser creada", "result" => $result));
+      }
+    } else {
+      $response = json_encode(array("code" => 400, "message" => "Los datos necesarios están incompletos"));
+    }
+    echo $response;
+  } catch (Exception $e) {
+    echo json_encode(array("code" => 500, "error" => $e));
+  }
+  wp_die();
+}
+
+add_action('wp_ajax_insertClase', 'insertClase');
+
 
 function add_styles_page()
 {
@@ -723,7 +777,7 @@ function add_styles_page()
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
-    wp_enqueue_script('admin_page', plugins_url('admin/js/tapete.js', __FILE__), array('jquery'));
+    wp_enqueue_script('admin_page', plugins_url('admin/js/clase.js', __FILE__), array('jquery'));
 
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),

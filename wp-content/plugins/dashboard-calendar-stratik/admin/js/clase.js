@@ -1,7 +1,7 @@
 $(document).ready(function() {
     console.log('sede.js ingrensado ok');
     
-    $('#sedes').DataTable({
+    $('#clases').DataTable({
         //para cambiar el lenguaje a español
             "language": {
                     "lengthMenu": "Mostrar _MENU_ registros",
@@ -60,12 +60,12 @@ $("#sendInfoCoach").click(function () {
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',
-                  title: 'Sede Actualizada Correctamente!',
+                  title: 'Clase Actualizado Correctamente!',
                   showConfirmButton: false,
                   timer: 1500 
                 })
                  location.reload();
-                console.log("Actualizar informacion  de la sede oki!!");
+                console.log("Actualizar informacion  del clase oki!!");
             });
         }
         else {
