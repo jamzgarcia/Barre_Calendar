@@ -25,9 +25,9 @@ class Coach
     $id_user = $current_user->ID;
 
     $table_coach = "{$wpdb->prefix}dash_coahc";
-		$sql = "SELECT dash_coach_nombre, dash_coach_apellido, dash_coach_correo,dash_coach_fecha_nacimiento 
+    $sql = "SELECT dash_coach_nombre, dash_coach_apellido, dash_coach_correo,dash_coach_fecha_nacimiento 
             from  {$wpdb->prefix}dash_coach ";
-		$dataCoach = $wpdb->get_results($sql,ARRAY_A); 
+    $dataCoach = $wpdb->get_results($sql, ARRAY_A);
 
     $html = "<!doctype html>
       <html lang='en'>
@@ -48,7 +48,7 @@ class Coach
               <!-- Sidebar -->
               <div id='sidebar-container' class='bg-secondary'>
                   <div class='logo'>
-                  <img src='admin/images/logoBarre.png' class='img-fluid rounded-circle avatar mr-2'>
+                  <img src='https://jamzpcs.com/imgBarre/logoBarre.png'  width='70' height='70' class='img-fluid rounded-circle avatar mr-2'>
                       <h4 class='text-light font-weight-bold mb-0'>BarreMX</h4>
                   </div>
                   <div class='menu'>
@@ -126,7 +126,7 @@ class Coach
                     <div class = 'container'>
                     <div class='col-sm-6 col-md-6 col-lg-6 col-xl-6'><button type='button' class='btn btn-info' data-toggle='modal' data-target='#nuevoCoach'>Nuevo Coach </button></div>
                       ";
-                   $html .= "<div class='table-responsive'>
+    $html .= "<div class='table-responsive'>
                           <table id='coaches' class='table table-striped' style='width:100%'>
                             <thead>
                                 <tr>
@@ -138,34 +138,34 @@ class Coach
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>";              
-              $var = 1;
-              foreach ($dataCoach as $key => $value) {
-                $html .= "<tr><td>".$var."</td>";
+                            <tbody>";
+    $var = 1;
+    foreach ($dataCoach as $key => $value) {
+      $html .= "<tr><td>" . $var . "</td>";
 
-                // Nombre coach
-                
-                $html .= "<td>".$value['dash_coach_nombre']."</td>";
+      // Nombre coach
 
-                // Apellido coach               
-                $html .= "<td>".$value['dash_coach_apellido']."</td>";          
+      $html .= "<td>" . $value['dash_coach_nombre'] . "</td>";
 
-                // correo electronico coach
-                $html .= "<td>".$value['dash_coach_correo']."</td>";
+      // Apellido coach               
+      $html .= "<td>" . $value['dash_coach_apellido'] . "</td>";
 
-                // fecha de nacimiento coach
-                $html .= "<td>".$value['dash_coach_fecha_nacimiento']."</td>";
+      // correo electronico coach
+      $html .= "<td>" . $value['dash_coach_correo'] . "</td>";
 
-                $html .= "<td>'<button type='button' class='btn btn-info'>Editar</button><br><button type='button' class='btn btn-danger'>Eliminar</button>'</td>";
+      // fecha de nacimiento coach
+      $html .= "<td>" . $value['dash_coach_fecha_nacimiento'] . "</td>";
 
-                $html .= "</tr>";
+      $html .= "<td>'<button type='button' class='btn btn-info'>Editar</button><br><button type='button' class='btn btn-danger'>Eliminar</button>'</td>";
 
-                 $var++;
-            }
+      $html .= "</tr>";
 
-            $html .= "</table></div></div></div>";
+      $var++;
+    }
 
-              $html .= "<!-- Modal -->
+    $html .= "</table></div></div></div>";
+
+    $html .= "<!-- Modal -->
                         <div class='modal fade' id='nuevoCoach' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                           <div class='modal-dialog'>
                             <div class='modal-content'>
