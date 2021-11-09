@@ -5,6 +5,31 @@ class Sede
 {
   public function formSede()
   {
+
+    global $wpdb;
+    $wpdb->show_errors();
+    $current_user = wp_get_current_user();
+
+    /*
+            * @example Safe usage: $current_user = wp_get_current_user();
+            * if ( ! ( $current_user instanceof WP_User ) ) {
+            *     return;
+            * }
+            */
+    //printf( __( 'Username: %s', 'textdomain' ), esc_html( $current_user->user_login ) ) . '<br />';
+    //printf( __( 'User email: %s', 'textdomain' ), esc_html( $current_user->user_email ) ) . '<br />';
+    //printf( __( 'User first name: %s', 'textdomain' ), esc_html( $current_user->user_firstname ) ) . '<br />';
+    //printf( __( 'User last name: %s', 'textdomain' ), esc_html( $current_user->user_lastname ) ) . '<br />';
+    //printf( __( 'User display name: %s', 'textdomain' ), esc_html( $current_user->display_name ) ) . '<br />';
+    //printf( __( 'User ID: %s', 'textdomain' ), esc_html( $current_user->ID ) );
+    $id_user = $current_user->ID;
+
+    $table_sede = "{$wpdb->prefix}dash_sede";
+		$sqlSede = "SELECT dash_sede_nombre, 
+                  dash_sede_direccion, 
+                  dash_sede_telefono 
+            from  {$wpdb->prefix}dash_sede";
+		$dataSede = $wpdb->get_results($sqlSede,ARRAY_A);
     $html =
       "<!doctype html>
 <html lang='en'>
@@ -103,26 +128,38 @@ class Sede
               <div class = 'container'>
               ";
 
-
-
-    $html .= "<div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end '><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevaSede'>Nueva sede </button></div>
+    $html .= "<div class='col-sm-6 col-md-6 col-lg-6 col-xl-12 d-flex justify-content-end '><button type='button' class='btn btn-info text-white bg-secondary' data-toggle='modal' data-target='#nuevaSede'>Nuevo Estudiante </button></div>
                 <div class='table-responsive'>
                     <table id='sedes' class='table table-striped' style='width:100%'>
-        <thead>
+                      <thead>
+                          <tr>
+                              <th>#</th>    
+                              <th>Nombre de la Sede</th>
+                              <th>Direccion de la Sede</th>
+                              <th>Telefono de la sede</th>              
+                          </tr>
+                      </thead>
+                      <tbody>
+                      ";
+        $var = 1;
+        foreach ($dataSede as $key => $value) {
 
-            <tr>
-                <th>#</th>    
-                <th>Nombre de la Sede</th>
-                <th>Direccion de la Sede</th>
-                <th>Telefono de la sede</th>                
-            </tr>
-        </thead>
-        <tbody>
-        ";
+          //id de la sede          
+          $html .= "<tr><td>".$var."</td>";         
 
+          // nombre de la sede
+          $html .= "<td>".$value['dash_sede_nombre']."</td>";
+          
+          // direccion de la sede
+          $html .= "<td>".$value['dash_sede_direccion']."</td>";
 
+          // telefono de la sede
+          $html .= "<td>".$value['dash_sede_telefono']."</td>";          
 
-    $html .= "</table></div></div></div>";
+          $var++;
+      }
+
+      $html .= "</table></div></div></div>";
 
     $html .= "<!-- Modal -->
                   <div class='modal fade' id='nuevaSede' tabindex='-1' aria-labelledby='nuevaSede' aria-hidden='true'>

@@ -19,44 +19,41 @@ $(document).ready(function() {
                      "sProcessing":"Procesando...",
                 }
         });
-        $("#sendInfoCoach").off("click");
-$("#sendInfoCoach").click(function () {
+        $("#sendInfoSede").off("click");
+        $("#sendInfoSede").click(function () {
         console.log("dio clic para update");
-        alert("Actualizar Datos Coach");
-        var dash_coach_nombre = $("#dash_coach_nombre").val();
-        var dash_coach_apellido = $("#dash_coach_apellido").val();
-        var dash_coach_correo = $("#dash_coach_correo").val();
-        var dash_coach_fecha_nacimiento = $("#dash_coach_fecha_nacimiento").val();
+        alert("Actualizar Datos Sede");
+        var dash_sede_nombre = $("#dash_sede_nombre").val();
+        var dash_sede_direccion = $("#dash_sede_direccion").val();
+        var dash_sede_telefono = $("#dash_sede_telefono").val();
         
-        console.log(dash_coach_nombre);
-        console.log(dash_coach_apellido);
-        console.log(dash_coach_correo);
-        console.log(dash_coach_fecha_nacimiento);
+        console.log(dash_sede_nombre);
+        console.log(dash_sede_direccion);
+        console.log(dash_sede_telefono);
         
         
         var validForm = validateForms([
-            { 'data': dash_coach_nombre, 'item': 'dash_coach_nombre', 'type': 'text', 'obligatory': true },
-            { 'data': dash_coach_apellido, 'item': 'dash_coach_apellido', 'type': 'text', 'obligatory': true },
-            { 'data': dash_coach_correo, 'item': 'dash_coach_correo', 'type': 'email', 'obligatory': true },
-            { 'data': dash_coach_fecha_nacimiento, 'item': 'dash_coach_fecha_nacimiento', 'type': 'date', 'obligatory': true }
+            { 'data': dash_sede_nombre, 'item': 'dash_sede_nombre', 'type': 'text', 'obligatory': true },
+            { 'data': dash_sede_direccion, 'item': 'dash_sede_direccion', 'type': 'text', 'obligatory': true },
+            { 'data': dash_sede_telefono, 'item': 'dash_sede_telefono', 'type': 'email', 'obligatory': true }
             
             
         ]);
         if (validForm["validate"]) {
-            $("#sendInfoCoach").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
-            $("#sendInfoCoach").attr('disabled', true);
-            actionEntry = insertCoach(dash_coach_nombre,dash_coach_apellido,dash_coach_correo,dash_coach_fecha_nacimiento); 
+            $("#sendInfoSede").html("Ingresando Informacion...   <i class='fa fa-spinner fa-spin' style='font-size:24px'></i>");
+            $("#sendInfoSede").attr('disabled', true);
+            actionEntry = insertSede(dash_sede_nombre,dash_sede_direccion,dash_sede_telefono); 
             $.when(actionEntry).done(function (respAction) {
                 console.log(respAction);
             }).fail(function (respFail) {
                 console.log(respFail);
             }).always(function (respAlways) {
-                $("#sendInfoCoach").html('Guardar Datos <i class="fa fa-floppy-o" aria-hidden="true"></i>');
+                $("#sendInfoSede").html('Guardar Datos <i class="fa fa-floppy-o" aria-hidden="true"></i>');
                 $("#updateInfoUser").removeAttr('disabled');
                 $(".itemIncorrect").each(function () {
                     $(this).removeClass("itemIncorrect");
                 });
-                $("#formCoach")[0].reset();
+                $("#formSede")[0].reset();
                 Swal.fire({
                   position: 'top-end',
                   icon: 'success',
@@ -64,7 +61,7 @@ $("#sendInfoCoach").click(function () {
                   showConfirmButton: false,
                   timer: 1500 
                 })
-                 location.reload();
+                location.reload();
                 console.log("Actualizar informacion  de la sede oki!!");
             });
         }
