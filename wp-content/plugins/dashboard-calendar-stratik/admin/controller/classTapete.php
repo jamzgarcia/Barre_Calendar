@@ -12,8 +12,6 @@ class Tapete
   <meta charset='UTF-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <link rel='stylesheet' href='estilos.css'>
-  <title>Flexbox vs CSS Grid</title>
 </head>
 
 <body>
@@ -21,11 +19,12 @@ class Tapete
     <dv class='contenedor-1'>
 
       <div class='card'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteA' />
-
+      <button onclick='tapete1()'>
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteA'/>
+      </button>
       </div>
 
-      <div class='card'>
+      <div class='card' onclick='tapete1()'>
         <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteB' />
       </div>
 
