@@ -18,13 +18,13 @@ class Tapete
   <div class='contenedor'>
     <dv class='contenedor-1'>
 
-      <div class='card'>
-      <button onclick='tapete1()'>
+      <div class='card' >
+      
         <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteA'/>
-      </button>
+      
       </div>
 
-      <div class='card' onclick='tapete1()'>
+      <div class='card'>
         <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteB' />
       </div>
 

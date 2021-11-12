@@ -18,6 +18,7 @@ include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controlle
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classTapete.php');
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classSede.php');
 include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classClase.php');
+include(ABSPATH . 'wp-content/plugins/dashboard-calendar-stratik/admin/controller/classCalendarioU.php');
 
 function EnablePluginForm()
 {
@@ -181,6 +182,17 @@ function viewCoaches()
 }
 
 add_shortcode("view_coach_admin", "viewCoaches");
+
+/* ShortCode For Coaches */
+
+function viewCalendario()
+{
+  $eventoData = new CalendarioU();
+  $html = $eventoData->CalendarioU();
+  return $html;
+}
+
+add_shortcode("view_calendario_admin", "viewCalendario");
 
 /* ShortCode For Estudiantes */
 function viewStudents()
@@ -707,10 +719,7 @@ function add_styles_page()
       'seguridad' => wp_create_nonce('seg')
 
     ]);
-  }
-
-
-  elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_sede_user')) {
+  } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_sede_user')) {
     wp_enqueue_style('bootstrap_css', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css");
     wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
     wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Didact+Gothic");
@@ -723,7 +732,7 @@ function add_styles_page()
     wp_register_script('select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array('jquery'), '1.0', true);
     wp_enqueue_style('select2css');
     wp_enqueue_script('select2');
-    
+
     wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
     wp_enqueue_script('codejquery_js', "https://code.jquery.com/jquery-3.5.1.js", array('jquery'));
     wp_enqueue_script('datatables1_js', "https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js", array('jquery'));
@@ -740,7 +749,7 @@ function add_styles_page()
       'url' => admin_url('admin-ajax.php'),
       'seguridad' => wp_create_nonce('seg')
     ]);
-  }elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_clase_user')) {
+  } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_clase_user')) {
     wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
     wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
     wp_enqueue_style('adminlte_css', plugins_url('admin/css/font-awesome/css/adminlte.min.css', __FILE__));
