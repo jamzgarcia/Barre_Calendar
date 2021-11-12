@@ -514,6 +514,36 @@ function add_styles_page()
       'seguridad' => wp_create_nonce('seg')
 
     ]);
+  } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_calendario_admin')) {
+    wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
+    wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
+    wp_enqueue_style('asap_font', "https://fonts.googleapis.com/css?family=Didact+Gothic");
+    wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+    wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
+    // style fullCalendar
+    wp_enqueue_style('toaster_css', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css");
+    wp_enqueue_style('custom_css', plugins_url('admin/css/view_calendar_users.css', __FILE__));
+    wp_register_style('select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all');
+    wp_register_script('select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array('jquery'), '1.0', true);
+    wp_enqueue_style('select2css');
+    wp_enqueue_script('select2');
+    wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
+    // script fullCalendar
+    wp_enqueue_script('fullCalendar1_js', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js");
+    wp_enqueue_script('fullCalendar2_js', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/locales-all.js");
+    wp_enqueue_script('jquery_js', "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js", array('jquery'));
+    wp_enqueue_script('pdfobject_js', "https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js", array('jquery'));
+    wp_enqueue_script('popper_js', plugins_url('admin/css/popper/popper.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
+    wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
+    wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+    wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
+    wp_enqueue_script('view_calendar_users_js', plugins_url('admin/js/view_calendar_users.js', __FILE__), array('jquery'));
+    wp_enqueue_script('select', plugins_url('admin/js/mi-script.js', __FILE__), array('jquery'));
+    wp_localize_script('request_js', 'SolicitudesAjax', [
+      'url' => admin_url('admin-ajax.php'),
+      'seguridad' => wp_create_nonce('seg')
+    ]);
   } elseif (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'view_calendar_users')) {
     wp_enqueue_style('bootstrap_css', plugins_url('admin/css/bootstrap/css/bootstrap.min.css', __FILE__));
     wp_enqueue_style('font_awesome_css', plugins_url('admin/css/font-awesome/css/font-awesome.min.css', __FILE__));
@@ -592,6 +622,13 @@ function add_styles_page()
     wp_enqueue_script('chart_js', "https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js", array('jquery'));
     wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
     wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
+    //  Para usar los botones
+    wp_enqueue_script('butExcel_js', "https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js");
+    wp_enqueue_script('butExcel2_js', "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js");
+    wp_enqueue_script('butExcel3_js', "https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js");
+    //  Para los estilos en Excel
+    wp_enqueue_script('estExcel_js', "https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.1.1/js/buttons.html5.styles.min.js");
+    wp_enqueue_script('estExcel2_js', "https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.1.1/js/buttons.html5.styles.templates.min.js");
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('adminlte_js', plugins_url('admin/js/adminlte.min.js', __FILE__));
@@ -709,7 +746,7 @@ function add_styles_page()
     wp_enqueue_script('datatablesjquery_js', "https://code.jquery.com/jquery-3.3.1.slim.min.js", array('jquery'));
     wp_enqueue_script('sweetalert_js', "https://cdn.jsdelivr.net/npm/sweetalert2@10");
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
-    wp_enqueue_script('admin_page', plugins_url('admin/js/tapete.js', __FILE__), array('jquery'));
+    wp_enqueue_script('tapete_page', plugins_url('admin/js/tapete.js', __FILE__), array(), false, true);
     wp_enqueue_script('scriipt_js', plugins_url('admin/js/scripts.js', __FILE__), array('jquery'));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
 

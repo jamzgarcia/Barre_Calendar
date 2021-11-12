@@ -20,32 +20,32 @@ class Tapete
 
       <div class='card' >
       
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteA'/>
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete1'/>
       
       </div>
 
       <div class='card'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteB' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete2' />
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapeteC' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete3' />
       </div>
 
       <div class='card' id='tapete'>
-        <img src=' https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete' />
+        <img src=' https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete4' />
       </div>
 
       <div class='card' id='tapete'>
-        <img src=' https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete' />
+        <img src=' https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete5' />
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete6'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete7'/>
       </div>
 
     </dv>
@@ -58,8 +58,8 @@ class Tapete
 
       </div>
 
-      <div class='card' id='tapete' id='tapete7'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+      <div class='card' id='tapete' id='tapete77'>
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete8'/>
       </div>
 
     </dv>
@@ -67,31 +67,31 @@ class Tapete
     <dv class='contenedor-1'>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete9'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete10'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete11'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete12'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete13'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete14'/>
       </div>
 
       <div class='card' id='tapete'>
-        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' />
+        <img src='https://barremx.online/imgBarre/Tapetes-Disponible.jpg' width='80' height='150' id='tapete15'/>
       </div>
 
     </dv>

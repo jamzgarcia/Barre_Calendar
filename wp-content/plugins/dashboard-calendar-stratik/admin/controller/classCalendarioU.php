@@ -7,7 +7,12 @@ class CalendarioU
 
   public function calendarioU()
   {
-    $html = "holaaa";
+    $html = "<div class='container'>
+    <div id='calendario'>
+        Calendario
+    </div>
+
+</div>";
     return $html;
   }
 }
