@@ -521,7 +521,7 @@ function add_styles_page()
     wp_enqueue_style('animated_css', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
     wp_enqueue_style('toaster_css', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css");
     // style fullCalendar
-    wp_enqueue_style('toaster_css', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css");
+    wp_enqueue_style('fullCalendar_css', "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css");
     wp_enqueue_style('custom_css', plugins_url('admin/css/view_calendar_users.css', __FILE__));
     wp_register_style('select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all');
     wp_register_script('select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array('jquery'), '1.0', true);
@@ -537,9 +537,11 @@ function add_styles_page()
     wp_enqueue_script('bootstrap_js', plugins_url('admin/css/bootstrap/js/bootstrap.min.js', __FILE__), array('jquery'));
     wp_enqueue_script('toaster_js', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery'));
     wp_enqueue_script('request_js', plugins_url('admin/js/request.js', __FILE__), array('jquery'));
+
     wp_enqueue_script('validators_js', plugins_url('admin/js/validators.js', __FILE__), array('jquery'));
-    wp_enqueue_script('view_calendar_users_js', plugins_url('admin/js/view_calendar_users.js', __FILE__), array('jquery'));
     wp_enqueue_script('select', plugins_url('admin/js/mi-script.js', __FILE__), array('jquery'));
+    //Archivo JS
+    wp_enqueue_script('request_js', plugins_url('admin/js/evento.js', __FILE__), array('jquery'));
     wp_localize_script('request_js', 'SolicitudesAjax', [
       'url' => admin_url('admin-ajax.php'),
       'seguridad' => wp_create_nonce('seg')
