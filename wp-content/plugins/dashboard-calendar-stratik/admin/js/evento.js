@@ -13,10 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 right: 'dayGridMonth,timeGridWeek,listWeek'
             },
 
-            dateClick: function(info) {
-                $("#evento").modal("show");
+            dayClick: function(info) {
+              console.log("click");
+                $("#nuevoEvento").modal("show");
 
             }
+
+            
         });
         calendar.render();
       });
